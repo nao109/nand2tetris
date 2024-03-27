@@ -15,11 +15,11 @@ CHIP DMux4Way {
 
     PARTS:
     DMux(in=in, sel=sel[0], a=w0, b=x0);
+    DMux(in=in, sel=sel[0], a=y0, b=z0);
+
     Not(in=sel[1], out=ns1);
     And(a=w0, b=ns1, out=a);
     And(a=x0, b=ns1, out=b);
-
-    DMux(in=in, sel=sel[0], a=y0, b=z0);
     And(a=y0, b=sel[1], out=c);
     And(a=z0, b=sel[1], out=d);
 }
