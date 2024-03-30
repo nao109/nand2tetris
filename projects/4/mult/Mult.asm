@@ -9,17 +9,19 @@
 
     @sum
     M=0
+    @i
+    M=0
 (LOOP)
+    @i
+    MD=M+1
     @R1
-    M=M-1
-    D=M
+    D=D-M
     @END
-    D;JLT
+    D;JGT
     @R0
     D=M
     @sum
     M=M+D
-    D=M
     @LOOP
     0;JMP
 (END)
