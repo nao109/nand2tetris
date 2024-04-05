@@ -5,6 +5,7 @@
 
 namespace Assembler {
     namespace Parser {
+        // 今読んでいるコードのアドレス
         int address = 0;
 
         string commandType(string str){

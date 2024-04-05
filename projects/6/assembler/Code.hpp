@@ -6,7 +6,6 @@
 namespace Assembler {
     namespace Code {
         string dest(string dst){
-            // cerr << "dest: " << dst << "\n";
             if(dst == "") return "000";
             if(dst == "M") return "001";
             if(dst == "D") return "010";
@@ -19,7 +18,6 @@ namespace Assembler {
         }
 
         string comp(string cmp){
-            // cerr << "cmp: " << cmp << "\n";
             if(cmp == "0")   return "0101010";
             if(cmp == "1")   return "0111111";
             if(cmp == "-1")  return "0111010";
@@ -52,7 +50,6 @@ namespace Assembler {
         }
 
         string jump(string jmp){
-            // cerr << "jmp: " << jmp << "\n";
             if(jmp == "") return "000";
             if(jmp == "JGT") return "001";
             if(jmp == "JEQ") return "010";

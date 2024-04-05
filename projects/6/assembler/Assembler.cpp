@@ -20,12 +20,14 @@ int main(int argc, char *argv[]) {
        return 1;
     }
 
-    //
+    // アセンブリの入力
     string str;
-    vector<string> s;
+    vector<string> s; // アセンブリのコード
     while(getline(ifs, str)){
+        // 空行は無視
         if(str[1] == '\0') continue;
 
+        // 空白は無視
         int slash = 0;
         string sstr;
         for(char i : str){
@@ -45,23 +47,26 @@ int main(int argc, char *argv[]) {
         s.push_back(sstr);
     }
 
+    // シンボルとアドレスの対応表
     SymbolTable symboltable;
+    // RAM[16]から追加
     symboltable.next_address = 16;
     for(string sstr : s){
         string commandType = Parser::commandType(sstr);
         string symbol = Parser::symbol(sstr);
 
-
+        // L_COMMANDなら対応表に追加
         if(commandType == "L_COMMAND"){
             if(!symboltable.contains(symbol)){
                 symboltable.addEntry(symbol, Parser::address);
             }
         }
+        // それ以外はアドレスをインクリメント
         else Parser::address++;
     }
 
+    // hackコード
     vector<string> decode;
-    Parser::address = 0;
     for(string str : s){
         ParseElement e;
         e.commandType = Parser::commandType(str);
@@ -81,20 +86,24 @@ int main(int argc, char *argv[]) {
             decode.push_back("111" + Code::comp(e.comp) + Code::dest(e.dest) + Code::jump(e.jump));
         }
         else if(e.commandType == "A_COMMAND"){
+            // シンボルがアドレスでない場合
             if(isalpha(e.symbol[0])){
                 if(symboltable.contains(e.symbol)) e.address = symboltable.getAddress(e.symbol);
                 else{
+                    // シンボルとアドレスを対応付け
                     symboltable.addEntry(e.symbol, symboltable.next_address);
                     e.address = symboltable.getAddress(e.symbol);
                     symboltable.next_address++;
                 }
             }
+            // シンボルがアドレスである場合
             else e.address = stoi(e.symbol);
             bitset<15> bs(e.address);
             decode.push_back("0" + bs.to_string());
         }
     }
 
+    // hackコードの出力
     ofstream file(output);
     for(string s : decode) file << s << endl;
     return 0;

@@ -7,7 +7,7 @@ namespace Assembler {
     struct SymbolTable {
     public:
         map<string, int> symboltable;
-        int next_address = 16;
+        int next_address;
 
         SymbolTable(){
             symboltable["SP"] = 0;
