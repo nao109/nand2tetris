@@ -44,7 +44,6 @@ class Assembler {
     };
 
     struct SymbolTable {
-        map<string, int> symboltable;
         int next_address;
 
     public:
