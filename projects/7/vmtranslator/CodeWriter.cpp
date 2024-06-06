@@ -2,6 +2,10 @@
 
 int VMtranslator::CodeWriter::label = 0;
 
+void VMtranslator::CodeWriter::setInputFileName(fs::path fileName){
+    this->inputFileName = fileName;
+}
+
 ofstream VMtranslator::CodeWriter::setFileName(fs::path fileName){
     string outputFileName = fileName.string();
     if(!fs::is_directory(fileName)){
@@ -100,6 +104,46 @@ void VMtranslator::CodeWriter::writePushPop(ofstream &file, ParseElement e){
             file << "@" << arg2 << "\n";
             file << "D=A\n";
         }
+        if(arg1 == "local"){
+            file << "@" << arg2 << "\n";
+            file << "D=A\n";
+            file << "@R1\n";
+            file << "A=D+M\n";
+            file << "D=M\n";
+        }
+        if(arg1 == "argument"){
+            file << "@" << arg2 << "\n";
+            file << "D=A\n";
+            file << "@R2\n";
+            file << "A=D+M\n";
+            file << "D=M\n";
+        }
+        if(arg1 == "this"){
+            file << "@" << arg2 << "\n";
+            file << "D=A\n";
+            file << "@R3\n";
+            file << "A=D+M\n";
+            file << "D=M\n";
+        }
+        if(arg1 == "that"){
+            file << "@" << arg2 << "\n";
+            file << "D=A\n";
+            file << "@R4\n";
+            file << "A=D+M\n";
+            file << "D=M\n";
+        }
+        if(arg1 == "pointer"){
+            file << "@R" << 3 + arg2 << "\n";
+            file << "D=M\n";
+        }
+        if(arg1 == "temp"){
+            file << "@R" << 5 + arg2 << "\n";
+            file << "D=M\n";
+        }
+        if(arg1 == "static"){
+            file << "@"<< inputFileName << "." << arg2 << "\n";
+            file << "D=M\n";
+        }
 
         // スタックにPush
         file << "@SP\n";
@@ -110,6 +154,48 @@ void VMtranslator::CodeWriter::writePushPop(ofstream &file, ParseElement e){
     }
     // Popコマンド
     else{
+        // スタックからPop
+        file << "@SP\n";
+        file << "M=M-1\n";
+        file << "A=M\n";
+        file << "D=M\n";
+
+        if(arg1 == "local"){
+            file << "@R1\n";
+            file << "A=M\n";
+            for(int i = 0; i < arg2; i++) file << "A=A+1\n";
+            file << "M=D\n";
+        }
+        if(arg1 == "argument"){
+            file << "@R2\n";
+            file << "A=M\n";
+            for(int i = 0; i < arg2; i++) file << "A=A+1\n";
+            file << "M=D\n";
+        }
+        if(arg1 == "this"){
+            file << "@R3\n";
+            file << "A=M\n";
+            for(int i = 0; i < arg2; i++) file << "A=A+1\n";
+            file << "M=D\n";
+        }
+        if(arg1 == "that"){
+            file << "@R4\n";
+            file << "A=M\n";
+            for(int i = 0; i < arg2; i++) file << "A=A+1\n";
+            file << "M=D\n";
+        }
+        if(arg1 == "pointer"){
+            file << "@R" << 3 + arg2 << "\n";
+            file << "M=D\n";
+        }
+        if(arg1 == "temp"){
+            file << "@R" << 5 + arg2 << "\n";
+            file << "M=D\n";
+        }
+        if(arg1 == "static"){
+            file << "@" << inputFileName << "." << arg2 << "\n";
+            file << "M=D\n";
+        }
     }
 }
 

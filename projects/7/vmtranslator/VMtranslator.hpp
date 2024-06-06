@@ -26,8 +26,11 @@ class VMtranslator {
 
     class CodeWriter {
         static int label;
+        string inputFileName;
 
     public:
+        void setInputFileName(fs::path fileName);
+
         ofstream setFileName(fs::path fileName);
 
         void writeArithmetic(ofstream &file, ParseElement e);
@@ -49,6 +52,8 @@ class VMtranslator {
             cerr << "Cannot open file: " << inputFile << "\n";
             return;
         }
+
+        codewriter.setInputFileName(inputFile.string());
 
         vector<ParseElement> vpe = parser.parse(ifs);
 
