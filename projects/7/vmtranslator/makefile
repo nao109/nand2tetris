@@ -8,3 +8,6 @@ FILE = StaticTest.vm
 main: VMtranslator.cpp $(FILE)
 	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o VMtranslator VMtranslator.cpp Parser.cpp CodeWriter.cpp
 	./VMtranslator $(FILE)
+
+test: ./VMtranslator $(FILE)
+	./VMtranslator $(FILE)
