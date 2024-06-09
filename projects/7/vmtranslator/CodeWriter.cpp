@@ -34,32 +34,25 @@ void VMtranslator::CodeWriter::writeArithmetic(ofstream &file, ParseElement e){
     // 単項演算子
     if(command == "neg" || command == "not"){
         file << "@SP\n";
-        file << "M=M-1\n";
-        file << "A=M\n";
+        file << "A=M-1\n";
 
         if(command == "neg") file << "M=-M\n";
         if(command == "not") file << "M=!M\n";
-
-        file << "@SP\n";
-        file << "M=M+1\n";
     }
     // 二項演算子
     else{
         file << "@SP\n";
-        file << "M=M-1\n";
-        file << "A=M\n";
+        file << "AM=M-1\n";
         file << "D=M\n";
-        file << "@SP\n";
-        file << "M=M-1\n";
-        file << "A=M\n";
+        file << "A=A-1\n";
         // x: M, y: D
 
         // 二項演算子
         if(command == "add" || command == "sub" || command == "and" || command == "or"){
-            if(command == "add") file << "D=D+M\n";
-            if(command == "sub") file << "D=M-D\n";
-            if(command == "and") file << "D=D&M\n";
-            if(command == "or") file << "D=D|M\n";
+            if(command == "add") file << "M=D+M\n";
+            if(command == "sub") file << "M=M-D\n";
+            if(command == "and") file << "M=D&M\n";
+            if(command == "or") file << "M=D|M\n";
         }
         // 比較演算子
         else{
@@ -80,13 +73,11 @@ void VMtranslator::CodeWriter::writeArithmetic(ofstream &file, ParseElement e){
             file << "(" << trueLabel << ")\n";
             file << "D=-1\n";
             file << "(" << endLabel << ")\n";
-        }
 
-        file << "@SP\n";
-        file << "A=M\n";
-        file << "M=D\n";
-        file << "@SP\n";
-        file << "M=M+1\n";
+            file << "@SP\n";
+            file << "A=M-1\n";
+            file << "M=D\n";
+        }
     }
 }
 
@@ -147,41 +138,75 @@ void VMtranslator::CodeWriter::writePushPop(ofstream &file, ParseElement e){
 
         // スタックにPush
         file << "@SP\n";
-        file << "A=M\n";
-        file << "M=D\n";
-        file << "@SP\n";
         file << "M=M+1\n";
+        file << "A=M-1\n";
+        file << "M=D\n";
     }
     // Popコマンド
     else{
         // スタックからPop
         file << "@SP\n";
-        file << "M=M-1\n";
-        file << "A=M\n";
+        file << "AM=M-1\n";
         file << "D=M\n";
 
         if(arg1 == "local"){
+            file << "@R13\n";
+            file << "M=D\n";
             file << "@R1\n";
+            file << "D=M\n";
+            file << "@" << arg2 << "\n";
+            file << "D=D+A\n";
+            file << "@R14\n";
+            file << "M=D\n";
+            file << "@R13\n";
+            file << "D=M\n";
+            file << "@R14\n";
             file << "A=M\n";
-            for(int i = 0; i < arg2; i++) file << "A=A+1\n";
             file << "M=D\n";
         }
         if(arg1 == "argument"){
+            file << "@R13\n";
+            file << "M=D\n";
             file << "@R2\n";
+            file << "D=M\n";
+            file << "@" << arg2 << "\n";
+            file << "D=D+A\n";
+            file << "@R14\n";
+            file << "M=D\n";
+            file << "@R13\n";
+            file << "D=M\n";
+            file << "@R14\n";
             file << "A=M\n";
-            for(int i = 0; i < arg2; i++) file << "A=A+1\n";
             file << "M=D\n";
         }
         if(arg1 == "this"){
+            file << "@R13\n";
+            file << "M=D\n";
             file << "@R3\n";
+            file << "D=M\n";
+            file << "@" << arg2 << "\n";
+            file << "D=D+A\n";
+            file << "@R14\n";
+            file << "M=D\n";
+            file << "@R13\n";
+            file << "D=M\n";
+            file << "@R14\n";
             file << "A=M\n";
-            for(int i = 0; i < arg2; i++) file << "A=A+1\n";
             file << "M=D\n";
         }
         if(arg1 == "that"){
+            file << "@R13\n";
+            file << "M=D\n";
             file << "@R4\n";
+            file << "D=M\n";
+            file << "@" << arg2 << "\n";
+            file << "D=D+A\n";
+            file << "@R14\n";
+            file << "M=D\n";
+            file << "@R13\n";
+            file << "D=M\n";
+            file << "@R14\n";
             file << "A=M\n";
-            for(int i = 0; i < arg2; i++) file << "A=A+1\n";
             file << "M=D\n";
         }
         if(arg1 == "pointer"){
