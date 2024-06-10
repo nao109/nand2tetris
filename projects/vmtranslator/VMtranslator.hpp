@@ -6,13 +6,13 @@ using namespace std;
 
 namespace fs = filesystem;
 
-class VMtranslator {
-    struct ParseElement {
-        string commandType;
-        string arg1;
-        int arg2;
-    };
+struct ParseElement {
+    string commandType;
+    string arg1;
+    int arg2;
+};
 
+class VMtranslator {
     class Parser {
     public:
         string commandType(const vector<string> &v);

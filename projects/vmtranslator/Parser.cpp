@@ -57,7 +57,7 @@ int VMtranslator::Parser::arg2(const vector<string> &v){
     return res;
 }
 
-vector<VMtranslator::ParseElement> VMtranslator::Parser::parse(ifstream &ifs){
+vector<ParseElement> VMtranslator::Parser::parse(ifstream &ifs){
     vector<ParseElement> vpe;
     // VMの入力
     string str;
