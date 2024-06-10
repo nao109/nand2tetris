@@ -1,12 +1,12 @@
 #include "VMtranslator.hpp"
 
-int VMtranslator::CodeWriter::label = 0;
+int CodeWriter::label = 0;
 
-void VMtranslator::CodeWriter::setInputFileName(fs::path fileName){
+void CodeWriter::setInputFileName(fs::path fileName){
     this->inputFileName = fileName;
 }
 
-ofstream VMtranslator::CodeWriter::setFileName(fs::path fileName){
+ofstream CodeWriter::setFileName(fs::path fileName){
     string outputFileName = fileName.string();
     if(!fs::is_directory(fileName)){
         outputFileName.replace(outputFileName.rfind(".vm"), 3, ".asm");
@@ -25,7 +25,7 @@ ofstream VMtranslator::CodeWriter::setFileName(fs::path fileName){
     return file;
 }
 
-void VMtranslator::CodeWriter::writeArithmetic(ofstream &file, ParseElement e){
+void CodeWriter::writeArithmetic(ofstream &file, ParseElement e){
     // 算術コマンドでなければパス
     if(e.commandType != "C_ARITHMETIC") return;
 
@@ -81,7 +81,7 @@ void VMtranslator::CodeWriter::writeArithmetic(ofstream &file, ParseElement e){
     }
 }
 
-void VMtranslator::CodeWriter::writePushPop(ofstream &file, ParseElement e){
+void CodeWriter::writePushPop(ofstream &file, ParseElement e){
     // Pushコマンド、Popコマンドでなければパス
     if(e.commandType != "C_PUSH" && e.commandType != "C_POP") return;
 
@@ -224,10 +224,10 @@ void VMtranslator::CodeWriter::writePushPop(ofstream &file, ParseElement e){
     }
 }
 
-void VMtranslator::CodeWriter::close(ofstream &file){
+void CodeWriter::close(ofstream &file){
     file.close();
 }
 
-string VMtranslator::CodeWriter::newLabel(){
+string CodeWriter::newLabel(){
     return "LABEL" + to_string(++label);
 }

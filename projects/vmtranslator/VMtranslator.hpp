@@ -12,36 +12,28 @@ struct ParseElement {
     int arg2;
 };
 
+class Parser {
+public:
+    string commandType(const vector<string> &v);
+    string arg1(const vector<string> &v);
+    int arg2(const vector<string> &v);
+    vector<ParseElement> parse(ifstream &ifs);
+};
+
+class CodeWriter {
+    static int label;
+    string inputFileName;
+
+public:
+    void setInputFileName(fs::path fileName);
+    ofstream setFileName(fs::path fileName);
+    void writeArithmetic(ofstream &file, ParseElement e);
+    void writePushPop(ofstream &file, ParseElement e);
+    void close(ofstream &file);
+    string newLabel();
+    };
+
 class VMtranslator {
-    class Parser {
-    public:
-        string commandType(const vector<string> &v);
-
-        string arg1(const vector<string> &v);
-
-        int arg2(const vector<string> &v);
-
-        vector<ParseElement> parse(ifstream &ifs);   
-    };
-
-    class CodeWriter {
-        static int label;
-        string inputFileName;
-
-    public:
-        void setInputFileName(fs::path fileName);
-
-        ofstream setFileName(fs::path fileName);
-
-        void writeArithmetic(ofstream &file, ParseElement e);
-
-        void writePushPop(ofstream &file, ParseElement e);
-
-        void close(ofstream &file);
-
-        string newLabel();
-    };
-
     Parser parser;
     CodeWriter codewriter;
 

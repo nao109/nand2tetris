@@ -37,18 +37,18 @@ vector<string> split(const string& s){
     return v;
 }
 
-string VMtranslator::Parser::commandType(const vector<string> &v){
+string Parser::commandType(const vector<string> &v){
     if(commandTypeTable.count(v[0])) return commandTypeTable[v[0]];
     else return "";
 }
 
-string VMtranslator::Parser::arg1(const vector<string> &v){
+string Parser::arg1(const vector<string> &v){
     if(commandType(v) == "C_RETURN") return "";
     else if(commandType(v) == "C_ARITHMETIC") return v[0];
     else return v[1];
 }
 
-int VMtranslator::Parser::arg2(const vector<string> &v){
+int Parser::arg2(const vector<string> &v){
     int res;
     if(commandType(v) == "C_PUSH" || commandType(v) == "C_POP" || commandType(v) == "C_FUNCTION" || commandType(v) == "C_CALL"){
         res = stoi(v[2]);
@@ -57,7 +57,7 @@ int VMtranslator::Parser::arg2(const vector<string> &v){
     return res;
 }
 
-vector<ParseElement> VMtranslator::Parser::parse(ifstream &ifs){
+vector<ParseElement> Parser::parse(ifstream &ifs){
     vector<ParseElement> vpe;
     // VMの入力
     string str;
