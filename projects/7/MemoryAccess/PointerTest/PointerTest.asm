@@ -35,7 +35,7 @@ AM=M-1
 D=M
 @R13
 M=D
-@R3
+@THIS
 D=M
 @2
 D=D+A
@@ -57,7 +57,7 @@ AM=M-1
 D=M
 @R13
 M=D
-@R4
+@THAT
 D=M
 @6
 D=D+A
@@ -87,7 +87,7 @@ A=A-1
 M=D+M
 @2
 D=A
-@R3
+@THIS
 A=D+M
 D=M
 @SP
@@ -101,7 +101,7 @@ A=A-1
 M=M-D
 @6
 D=A
-@R4
+@THAT
 A=D+M
 D=M
 @SP
