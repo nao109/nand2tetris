@@ -98,28 +98,28 @@ void CodeWriter::writePushPop(ofstream &file, ParseElement e){
         if(arg1 == "local"){
             file << "@" << arg2 << "\n";
             file << "D=A\n";
-            file << "@R1\n";
+            file << "@LCL\n";
             file << "A=D+M\n";
             file << "D=M\n";
         }
         if(arg1 == "argument"){
             file << "@" << arg2 << "\n";
             file << "D=A\n";
-            file << "@R2\n";
+            file << "@ARG\n";
             file << "A=D+M\n";
             file << "D=M\n";
         }
         if(arg1 == "this"){
             file << "@" << arg2 << "\n";
             file << "D=A\n";
-            file << "@R3\n";
+            file << "@THIS\n";
             file << "A=D+M\n";
             file << "D=M\n";
         }
         if(arg1 == "that"){
             file << "@" << arg2 << "\n";
             file << "D=A\n";
-            file << "@R4\n";
+            file << "@THAT\n";
             file << "A=D+M\n";
             file << "D=M\n";
         }
@@ -152,7 +152,7 @@ void CodeWriter::writePushPop(ofstream &file, ParseElement e){
         if(arg1 == "local"){
             file << "@R13\n";
             file << "M=D\n";
-            file << "@R1\n";
+            file << "@LCL\n";
             file << "D=M\n";
             file << "@" << arg2 << "\n";
             file << "D=D+A\n";
@@ -167,7 +167,7 @@ void CodeWriter::writePushPop(ofstream &file, ParseElement e){
         if(arg1 == "argument"){
             file << "@R13\n";
             file << "M=D\n";
-            file << "@R2\n";
+            file << "@ARG\n";
             file << "D=M\n";
             file << "@" << arg2 << "\n";
             file << "D=D+A\n";
@@ -182,7 +182,7 @@ void CodeWriter::writePushPop(ofstream &file, ParseElement e){
         if(arg1 == "this"){
             file << "@R13\n";
             file << "M=D\n";
-            file << "@R3\n";
+            file << "@THIS\n";
             file << "D=M\n";
             file << "@" << arg2 << "\n";
             file << "D=D+A\n";
@@ -197,7 +197,7 @@ void CodeWriter::writePushPop(ofstream &file, ParseElement e){
         if(arg1 == "that"){
             file << "@R13\n";
             file << "M=D\n";
-            file << "@R4\n";
+            file << "@THAT\n";
             file << "D=M\n";
             file << "@" << arg2 << "\n";
             file << "D=D+A\n";
