@@ -1,4 +1,4 @@
-#include "VMtranslator.hpp"
+#include "Parser.hpp"
 
 map<const string, string> commandTypeTable = {
     {     "add", "C_ARITHMETIC"},

@@ -1,4 +1,4 @@
-#include "VMtranslator.hpp"
+#include "CodeWriter.hpp"
 
 int CodeWriter::label = 0;
 
