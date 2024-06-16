@@ -5,8 +5,8 @@ LIBDIR  = -L/opt/boost/gcc/lib
 
 FILE = StaticTest.vm
 
-main: VMtranslator.cpp
-	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o VMtranslator VMtranslator.cpp Parser.cpp CodeWriter.cpp
+main: main.cpp Parser.cpp CodeWriter.cpp
+	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o VMtranslator main.cpp Parser.cpp CodeWriter.cpp
 
 test: ./VMtranslator $(FILE)
 	./VMtranslator $(FILE)
