@@ -13,56 +13,55 @@ struct ParseElement {
 };
 
 class Parser {
+    ifstream ifs;
+
 public:
+    Parser(fs::path file);
     string commandType(const vector<string> &v);
     string arg1(const vector<string> &v);
     int arg2(const vector<string> &v);
-    vector<ParseElement> parse(ifstream &ifs);
+    vector<ParseElement> parse();
 };
 
 class CodeWriter {
+    ofstream ofs;
+    string fileName;
     static int label;
-    string inputFileName;
 
 public:
-    void setInputFileName(fs::path fileName);
-    ofstream setFileName(fs::path fileName);
-    void writeArithmetic(ofstream &file, ParseElement e);
-    void writePushPop(ofstream &file, ParseElement e);
-    void close(ofstream &file);
+    CodeWriter(fs::path file);
+    void setFileName(string fileName);
+    void writeArithmetic(ParseElement e);
+    void writePushPop(ParseElement e);
+    void close();
     string newLabel();
-    };
+};
 
 class VMtranslator {
-    Parser parser;
-    CodeWriter codewriter;
+    fs::path inputFile;
 
-    void translateFile(fs::path inputFile, ofstream &outputFile){
-        // 入力vmファイル
-        ifstream ifs(inputFile);
-        if(ifs.fail()){
-            cerr << "Cannot open file: " << inputFile << "\n";
-            return;
-        }
+    void translateFile(CodeWriter &codewriter, fs::path inputFile){
+        Parser parser(inputFile);
 
-        codewriter.setInputFileName(inputFile.string());
+        codewriter.setFileName(inputFile.string());
 
-        vector<ParseElement> vpe = parser.parse(ifs);
+        vector<ParseElement> vpe = parser.parse();
 
         for(auto e : vpe){
-            codewriter.writeArithmetic(outputFile, e);
-            codewriter.writePushPop(outputFile, e);
+            codewriter.writeArithmetic(e);
+            codewriter.writePushPop(e);
         }
     }
 
 public:
-    void translate(fs::path inputFile){
-        // 出力asmファイル
-        ofstream outputFile = codewriter.setFileName(inputFile);
+    VMtranslator(fs::path inputFile) : inputFile(inputFile) {}
+
+    void translate(){
+        CodeWriter codewriter(inputFile);
 
         // vmファイルが入力された場合
         if(!fs::is_directory(inputFile)){
-            translateFile(inputFile, outputFile);
+            translateFile(codewriter, inputFile);
         }
         // ディレクトリが入力された場合
         else{
@@ -73,10 +72,10 @@ public:
                 // vmファイル以外は無視
                 if(fileName.rfind(".vm") == string::npos) continue;
 
-                translateFile(fileName, outputFile);
+                translateFile(codewriter, fileName);
             }
         }
-        codewriter.close(outputFile);
+        codewriter.close();
     }
 };
 

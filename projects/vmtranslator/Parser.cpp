@@ -37,6 +37,14 @@ vector<string> split(const string& s){
     return v;
 }
 
+Parser::Parser(fs::path file) {
+    // 入力vmファイル
+    ifs.open(file);
+    if(ifs.fail()){
+        cerr << "Cannot open file: " << file.string() << "\n";
+    }
+}
+
 string Parser::commandType(const vector<string> &v){
     if(commandTypeTable.count(v[0])) return commandTypeTable[v[0]];
     else return "";
@@ -57,7 +65,7 @@ int Parser::arg2(const vector<string> &v){
     return res;
 }
 
-vector<ParseElement> Parser::parse(ifstream &ifs){
+vector<ParseElement> Parser::parse(){
     vector<ParseElement> vpe;
     // VMの入力
     string str;
