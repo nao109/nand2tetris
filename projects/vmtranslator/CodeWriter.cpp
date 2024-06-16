@@ -23,12 +23,7 @@ void CodeWriter::setFileName(string fileName){
     this->fileName = fileName.substr(0, fileName.rfind(".vm"));
 }
 
-void CodeWriter::writeArithmetic(ParseElement e){
-    // 算術コマンドでなければパス
-    if(e.commandType != "C_ARITHMETIC") return;
-
-    string command = e.arg1;
-
+void CodeWriter::writeArithmetic(string command){
     // 単項演算子
     if(command == "neg" || command == "not"){
         ofs << "@SP\n";
@@ -79,14 +74,7 @@ void CodeWriter::writeArithmetic(ParseElement e){
     }
 }
 
-void CodeWriter::writePushPop(ParseElement e){
-    // Pushコマンド、Popコマンドでなければパス
-    if(e.commandType != "C_PUSH" && e.commandType != "C_POP") return;
-
-    string command = e.commandType;
-    string arg1 = e.arg1;
-    int arg2 = e.arg2;
-
+void CodeWriter::writePushPop(string command, string arg1, int arg2){
     // Pushコマンド
     if(command == "C_PUSH"){
         if(arg1 == "constant"){
@@ -228,4 +216,10 @@ void CodeWriter::close(){
 
 string CodeWriter::newLabel(){
     return "LABEL" + to_string(++label);
+}
+
+void CodeWriter::writeCode(ParseElement e){
+    if(e.commandType == "C_ARITHMETIC") writeArithmetic(e.arg1);
+    if(e.commandType == "C_PUSH") writePushPop(e.commandType, e.arg1, e.arg2);
+    if(e.commandType == "C_POP") writePushPop(e.commandType, e.arg1, e.arg2);
 }

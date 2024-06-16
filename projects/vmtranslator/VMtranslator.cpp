@@ -9,10 +9,7 @@ void VMtranslator::translateFile(CodeWriter &codewriter, fs::path inputFile){
 
     vector<ParseElement> vpe = parser.parse();
 
-    for(auto e : vpe){
-        codewriter.writeArithmetic(e);
-        codewriter.writePushPop(e);
-    }
+    for(auto e : vpe) codewriter.writeCode(e);
 }
 
 void VMtranslator::translate(){

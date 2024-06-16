@@ -8,13 +8,15 @@ class CodeWriter {
     string fileName;
     static int label;
 
+    void writeArithmetic(string arg1);
+    void writePushPop(string command, string arg1, int arg2);
+    string newLabel();
+
 public:
     CodeWriter(fs::path file);
     void setFileName(string fileName);
-    void writeArithmetic(ParseElement e);
-    void writePushPop(ParseElement e);
+    void writeCode(ParseElement e);
     void close();
-    string newLabel();
 };
 
 #endif  // CODEWRITER_H_
