@@ -1,4 +1,4 @@
-#include "Assembler.hpp"
+#include "SymbolTable.hpp"
 
 map<string, int> symboltable = {
     {      "SP",     0},
@@ -26,27 +26,27 @@ map<string, int> symboltable = {
     {"KEYBOARD", 24576}
 };
 
-Assembler::SymbolTable::SymbolTable(){
+SymbolTable::SymbolTable(){
     // RAM[16]から追加
     next_address = 16;
 }
 
-int Assembler::SymbolTable::getNextAddress(){
+int SymbolTable::getNextAddress(){
     return next_address;
 }
 
-void Assembler::SymbolTable::incNextAddress(){
+void SymbolTable::incNextAddress(){
     next_address++;
 }
 
-void Assembler::SymbolTable::addEntry(string symbol, int address){
+void SymbolTable::addEntry(string symbol, int address){
     symboltable[symbol] = address;
 }
 
-bool Assembler::SymbolTable::contains(string symbol){
+bool SymbolTable::contains(string symbol){
     return symboltable.count(symbol);
 }
 
-int Assembler::SymbolTable::getAddress(string symbol){
+int SymbolTable::getAddress(string symbol){
     return symboltable[symbol];
 }

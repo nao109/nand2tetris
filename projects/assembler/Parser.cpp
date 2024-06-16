@@ -1,15 +1,14 @@
-#include "Assembler.hpp"
+#include "Parser.hpp"
 
-
-void Assembler::Parser::advance(){
+void Parser::advance(){
     address++;
 }
 
-int Assembler::Parser::getAddress(){
+int Parser::getAddress(){
     return address;
 }
 
-string Assembler::Parser::commandType(string str){
+string Parser::commandType(string str){
     string res;
     if(str[0] == '@') res = "A_COMMAND";
     else if(str[0] == '(') res = "L_COMMAND";
@@ -17,7 +16,7 @@ string Assembler::Parser::commandType(string str){
     return res;
 }
 
-string Assembler::Parser::symbol(string str){
+string Parser::symbol(string str){
     string res;
     if(commandType(str) == "A_COMMAND"){
         res = str.substr(1, str.size() - 2);
@@ -29,7 +28,7 @@ string Assembler::Parser::symbol(string str){
     return res;
 }
 
-string Assembler::Parser::dest(string str){
+string Parser::dest(string str){
     int pos = str.find("=");
     string res;
     if(pos == -1) res = "";
@@ -37,7 +36,7 @@ string Assembler::Parser::dest(string str){
     return res;
 }
 
-string Assembler::Parser::comp(string str){
+string Parser::comp(string str){
     int pos1 = str.find("=");
     int pos2 = str.find(";");
     string res;
@@ -49,7 +48,7 @@ string Assembler::Parser::comp(string str){
     return res;
 }
 
-string Assembler::Parser::jump(string str){
+string Parser::jump(string str){
     int pos = str.find(";");
     string res;
     if(pos == -1) return "";

@@ -5,8 +5,8 @@ LIBDIR  = -L/opt/boost/gcc/lib
 
 FILE = Add.asm
 
-./Assembler: main.cpp Code.cpp Parser.cpp SymbolTable.cpp Assembler.hpp
-	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o Assembler main.cpp Code.cpp Parser.cpp SymbolTable.cpp
+./Assembler: main.cpp Assembler.cpp Code.cpp Parser.cpp SymbolTable.cpp Assembler.hpp Parser.hpp SymbolTable.hpp Utils.hpp
+	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o Assembler main.cpp Assembler.cpp Code.cpp Parser.cpp SymbolTable.cpp
 
 .PHONY: test
 test: ./Assembler $(FILE)
