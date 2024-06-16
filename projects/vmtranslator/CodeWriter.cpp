@@ -76,51 +76,51 @@ void CodeWriter::writeArithmetic(string command){
     }
 }
 
-void CodeWriter::writePushPop(string command, string arg1, int arg2){
+void CodeWriter::writePushPop(string command, string segment, int index){
     // Pushコマンド
     if(command == "C_PUSH"){
-        if(arg1 == "constant"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "constant"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
         }
-        if(arg1 == "local"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "local"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
             ofs << "@LCL\n";
             ofs << "A=D+M\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "argument"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "argument"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
             ofs << "@ARG\n";
             ofs << "A=D+M\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "this"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "this"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
             ofs << "@THIS\n";
             ofs << "A=D+M\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "that"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "that"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
             ofs << "@THAT\n";
             ofs << "A=D+M\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "pointer"){
-            ofs << "@R" << 3 + arg2 << "\n";
+        if(segment == "pointer"){
+            ofs << "@R" << 3 + index << "\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "temp"){
-            ofs << "@R" << 5 + arg2 << "\n";
+        if(segment == "temp"){
+            ofs << "@R" << 5 + index << "\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "static"){
-            ofs << "@"<< fileName << "." << arg2 << "\n";
+        if(segment == "static"){
+            ofs << "@"<< fileName << "." << index << "\n";
             ofs << "D=M\n";
         }
 
@@ -137,12 +137,12 @@ void CodeWriter::writePushPop(string command, string arg1, int arg2){
         ofs << "AM=M-1\n";
         ofs << "D=M\n";
 
-        if(arg1 == "local"){
+        if(segment == "local"){
             ofs << "@R13\n";
             ofs << "M=D\n";
             ofs << "@LCL\n";
             ofs << "D=M\n";
-            ofs << "@" << arg2 << "\n";
+            ofs << "@" << index << "\n";
             ofs << "D=D+A\n";
             ofs << "@R14\n";
             ofs << "M=D\n";
@@ -152,12 +152,12 @@ void CodeWriter::writePushPop(string command, string arg1, int arg2){
             ofs << "A=M\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "argument"){
+        if(segment == "argument"){
             ofs << "@R13\n";
             ofs << "M=D\n";
             ofs << "@ARG\n";
             ofs << "D=M\n";
-            ofs << "@" << arg2 << "\n";
+            ofs << "@" << index << "\n";
             ofs << "D=D+A\n";
             ofs << "@R14\n";
             ofs << "M=D\n";
@@ -167,12 +167,12 @@ void CodeWriter::writePushPop(string command, string arg1, int arg2){
             ofs << "A=M\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "this"){
+        if(segment == "this"){
             ofs << "@R13\n";
             ofs << "M=D\n";
             ofs << "@THIS\n";
             ofs << "D=M\n";
-            ofs << "@" << arg2 << "\n";
+            ofs << "@" << index << "\n";
             ofs << "D=D+A\n";
             ofs << "@R14\n";
             ofs << "M=D\n";
@@ -182,12 +182,12 @@ void CodeWriter::writePushPop(string command, string arg1, int arg2){
             ofs << "A=M\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "that"){
+        if(segment == "that"){
             ofs << "@R13\n";
             ofs << "M=D\n";
             ofs << "@THAT\n";
             ofs << "D=M\n";
-            ofs << "@" << arg2 << "\n";
+            ofs << "@" << index << "\n";
             ofs << "D=D+A\n";
             ofs << "@R14\n";
             ofs << "M=D\n";
@@ -197,16 +197,16 @@ void CodeWriter::writePushPop(string command, string arg1, int arg2){
             ofs << "A=M\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "pointer"){
-            ofs << "@R" << 3 + arg2 << "\n";
+        if(segment == "pointer"){
+            ofs << "@R" << 3 + index << "\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "temp"){
-            ofs << "@R" << 5 + arg2 << "\n";
+        if(segment == "temp"){
+            ofs << "@R" << 5 + index << "\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "static"){
-            ofs << "@" << fileName << "." << arg2 << "\n";
+        if(segment == "static"){
+            ofs << "@" << fileName << "." << index << "\n";
             ofs << "M=D\n";
         }
     }
