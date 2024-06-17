@@ -12,6 +12,8 @@ CodeWriter::CodeWriter(fs::path file) {
     }
     ofs.open(outputFile);
 
+    functionName = "NULL";
+
     // SP = 256
     ofs << "@256\n";
     ofs << "D=A\n";
@@ -218,8 +220,28 @@ string CodeWriter::newLabel(){
     return "LABEL" + to_string(++label);
 }
 
+void CodeWriter::writeLabel(string label){
+    ofs << "(" + functionName + "$" + label + ")\n";
+}
+
+void CodeWriter::writeGoto(string label){
+    ofs << "@" + functionName + "$" + label + "\n";
+    ofs << "0;JMP\n";
+}
+
+void CodeWriter::writeIf(string label){
+    ofs << "@SP\n";
+    ofs << "AM=M-1\n";
+    ofs << "D=M\n";
+    ofs << "@" + functionName + "$" + label + "\n";
+    ofs << "D;JNE\n";
+}
+
 void CodeWriter::writeCode(ParseElement e){
     if(e.commandType == "C_ARITHMETIC") writeArithmetic(e.arg1);
     if(e.commandType == "C_PUSH") writePushPop(e.commandType, e.arg1, e.arg2);
     if(e.commandType == "C_POP") writePushPop(e.commandType, e.arg1, e.arg2);
+    if(e.commandType == "C_LABEL") writeLabel(e.arg1);
+    if(e.commandType == "C_GOTO") writeGoto(e.arg1);
+    if(e.commandType == "C_IF") writeIf(e.arg1);
 }

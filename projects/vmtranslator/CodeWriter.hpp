@@ -7,10 +7,15 @@ class CodeWriter {
     ofstream ofs;
     string fileName;
     static int label;
+    string functionName;
 
     void writeArithmetic(string arg1);
     void writePushPop(string command, string arg1, int arg2);
     string newLabel();
+
+    void writeLabel(string label);
+    void writeGoto(string label);
+    void writeIf(string label);
 
 public:
     CodeWriter(fs::path file);
