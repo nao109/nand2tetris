@@ -11,11 +11,12 @@ class CodeWriter {
 
     void writeArithmetic(string arg1);
     void writePushPop(string command, string arg1, int arg2);
-    string newLabel();
 
     void writeLabel(string label);
     void writeGoto(string label);
     void writeIf(string label);
+
+    string newLabel();
 
 public:
     CodeWriter(fs::path file);

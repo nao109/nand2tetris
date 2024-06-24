@@ -216,10 +216,6 @@ void CodeWriter::close(){
     ofs.close();
 }
 
-string CodeWriter::newLabel(){
-    return "LABEL" + to_string(++label);
-}
-
 void CodeWriter::writeLabel(string label){
     ofs << "(" + functionName + "$" + label + ")\n";
 }
@@ -244,4 +240,8 @@ void CodeWriter::writeCode(ParseElement e){
     if(e.commandType == "C_LABEL") writeLabel(e.arg1);
     if(e.commandType == "C_GOTO") writeGoto(e.arg1);
     if(e.commandType == "C_IF") writeIf(e.arg1);
+}
+
+string CodeWriter::newLabel(){
+    return "LABEL" + to_string(++label);
 }
