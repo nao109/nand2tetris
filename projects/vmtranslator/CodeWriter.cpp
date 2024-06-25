@@ -12,7 +12,7 @@ CodeWriter::CodeWriter(fs::path file) {
     }
     ofs.open(outputFile);
 
-    functionName = "NULL";
+    this->functionName.push("NULL");
 }
 
 void CodeWriter::setFileName(string fileName){
@@ -211,11 +211,11 @@ void CodeWriter::close(){
 }
 
 void CodeWriter::writeLabel(string label){
-    ofs << "(" + functionName + "$" + label + ")\n";
+    ofs << "(" + functionName.top() + "$" + label + ")\n";
 }
 
 void CodeWriter::writeGoto(string label){
-    ofs << "@" + functionName + "$" + label + "\n";
+    ofs << "@" + functionName.top() + "$" + label + "\n";
     ofs << "0;JMP\n";
 }
 
@@ -223,7 +223,7 @@ void CodeWriter::writeIf(string label){
     ofs << "@SP\n";
     ofs << "AM=M-1\n";
     ofs << "D=M\n";
-    ofs << "@" + functionName + "$" + label + "\n";
+    ofs << "@" + functionName.top() + "$" + label + "\n";
     ofs << "D;JNE\n";
 }
 
