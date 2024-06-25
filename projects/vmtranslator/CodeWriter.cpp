@@ -13,12 +13,6 @@ CodeWriter::CodeWriter(fs::path file) {
     ofs.open(outputFile);
 
     functionName = "NULL";
-
-    // SP = 256
-    ofs << "@256\n";
-    ofs << "D=A\n";
-    ofs << "@SP\n";
-    ofs << "M=D\n";
 }
 
 void CodeWriter::setFileName(string fileName){
