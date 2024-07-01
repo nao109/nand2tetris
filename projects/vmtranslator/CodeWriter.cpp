@@ -227,6 +227,95 @@ void CodeWriter::writeIf(string label){
     ofs << "D;JNE\n";
 }
 
+void CodeWriter::writeReturn(){
+    // FRAME = LCL
+    ofs << "@LCL\n";
+    ofs << "D=M\n";
+    ofs << "@R13\n";
+    ofs << "M=D\n";
+
+    // RET = *(FRAME-5)
+    ofs << "@5\n";
+    ofs << "D=A\n";
+    ofs << "@LCL\n";
+    ofs << "A=M-D\n";
+    ofs << "D=M\n";
+    ofs << "@R14\n";
+    ofs << "M=D\n";
+
+    // *ARG = pop()
+    ofs << "@SP\n";
+    ofs << "A=M-1\n";
+    ofs << "D=M\n";
+    ofs << "@ARG\n";
+    ofs << "A=M\n";
+    ofs << "M=D\n";
+
+    // SP = ARG+1
+    ofs << "@ARG\n";
+    ofs << "D=M\n";
+    ofs << "@SP\n";
+    ofs << "M=D+1\n";
+
+    // THAT = *(FRAME-1)
+    ofs << "@R13\n";
+    ofs << "MD=M-1\n";
+    ofs << "A=D\n";
+    ofs << "D=M\n";
+    ofs << "@THAT\n";
+    ofs << "M=D\n";
+
+    // THIS = *(FRAME-2)
+    ofs << "@R13\n";
+    ofs << "MD=M-1\n";
+    ofs << "A=D\n";
+    ofs << "D=M\n";
+    ofs << "@THIS\n";
+    ofs << "M=D\n";
+
+    // ARG = *(FRAME-3)
+    ofs << "@R13\n";
+    ofs << "MD=M-1\n";
+    ofs << "A=D\n";
+    ofs << "D=M\n";
+    ofs << "@ARG\n";
+    ofs << "M=D\n";
+
+    // LCL = *(FRAME-4)
+    ofs << "@R13\n";
+    ofs << "MD=M-1\n";
+    ofs << "A=D\n";
+    ofs << "D=M\n";
+    ofs << "@LCL\n";
+    ofs << "M=D\n";
+
+    // goto RET
+    ofs << "@R14\n";
+    ofs << "A=M\n";
+
+    this->functionName.pop();
+}
+
+void CodeWriter::writeFunction(string functionName, int numLocals){
+    // (f)
+    ofs << "(" + functionName + ")\n";
+
+    // repeat k times:
+    // push 0
+    ofs << "@0\n";
+    ofs << "D=A\n";
+    ofs << "@SP\n";
+    ofs << "A=M\n";
+    for(int i = 0; i < numLocals; ++i){
+        ofs << "M=D\n";
+        ofs << "A=A+1\n";
+    }
+    ofs << "@" << numLocals << "\n";
+    ofs << "D=A\n";
+    ofs << "@SP\n";
+    ofs << "M=D+M\n";
+}
+
 void CodeWriter::writeCode(ParseElement e){
     if(e.commandType == "C_ARITHMETIC") writeArithmetic(e.arg1);
     if(e.commandType == "C_PUSH") writePushPop(e.commandType, e.arg1, e.arg2);
@@ -234,6 +323,8 @@ void CodeWriter::writeCode(ParseElement e){
     if(e.commandType == "C_LABEL") writeLabel(e.arg1);
     if(e.commandType == "C_GOTO") writeGoto(e.arg1);
     if(e.commandType == "C_IF") writeIf(e.arg1);
+    if(e.commandType == "C_RETURN") writeReturn();
+    if(e.commandType == "C_FUNCTION") writeFunction(e.arg1, e.arg2);
 }
 
 string CodeWriter::newLabel(){
