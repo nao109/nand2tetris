@@ -292,8 +292,6 @@ void CodeWriter::writeReturn(){
     // goto RET
     ofs << "@R14\n";
     ofs << "A=M\n";
-
-    this->functionName.pop();
 }
 
 void CodeWriter::writeFunction(string functionName, int numLocals){
