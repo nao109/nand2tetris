@@ -7,7 +7,7 @@ class CodeWriter {
     ofstream ofs;
     string fileName;
     static int label;
-    stack<string> functionName;
+    string functionName;
 
     void writeArithmetic(string arg1);
     void writePushPop(string command, string arg1, int arg2);
