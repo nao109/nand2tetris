@@ -5,7 +5,7 @@ VMtranslator::VMtranslator(fs::path inputFile) : inputFile(inputFile) {}
 void VMtranslator::translateFile(CodeWriter &codewriter, fs::path inputFile){
     Parser parser(inputFile);
 
-    codewriter.setFileName(inputFile.string());
+    codewriter.setFileName(inputFile.filename().string());
 
     vector<ParseElement> vpe = parser.parse();
 
