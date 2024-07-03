@@ -13,6 +13,15 @@ CodeWriter::CodeWriter(fs::path file) {
     ofs.open(outputFile);
 
     this->functionName = "NULL";
+
+    // SP = 256
+    ofs << "@256\n";
+    ofs << "D=A\n";
+    ofs << "@SP\n";
+    ofs << "M=D\n";
+
+    // call Sys.init
+    writeCall("Sys.init", 0);
 }
 
 void CodeWriter::setFileName(string fileName){
