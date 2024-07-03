@@ -16,6 +16,7 @@ class CodeWriter {
     void writeGoto(string label);
     void writeIf(string label);
 
+    void writeCall(string functionName, int numArgs);
     void writeReturn();
     void writeFunction(string functionName, int numLocals);
 

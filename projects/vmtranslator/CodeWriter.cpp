@@ -227,6 +227,73 @@ void CodeWriter::writeIf(string label){
     ofs << "D;JNE\n";
 }
 
+void CodeWriter::writeCall(string functionName, int numArgs){
+    string return_address = newLabel();
+
+    // push return-address
+    ofs << "@" << return_address << "\n";
+    ofs << "D=A\n";
+    ofs << "@SP\n";
+    ofs << "M=M+1\n";
+    ofs << "A=M-1\n";
+    ofs << "M=D\n";
+
+    // push LCL
+    ofs << "@LCL\n";
+    ofs << "D=M\n";
+    ofs << "@SP\n";
+    ofs << "M=M+1\n";
+    ofs << "A=M-1\n";
+    ofs << "M=D\n";
+
+    // push ARG
+    ofs << "@ARG\n";
+    ofs << "D=M\n";
+    ofs << "@SP\n";
+    ofs << "M=M+1\n";
+    ofs << "A=M-1\n";
+    ofs << "M=D\n";
+
+    // push THIS
+    ofs << "@THIS\n";
+    ofs << "D=M\n";
+    ofs << "@SP\n";
+    ofs << "M=M+1\n";
+    ofs << "A=M-1\n";
+    ofs << "M=D\n";
+
+    // push THAT
+    ofs << "@THAT\n";
+    ofs << "D=M\n";
+    ofs << "@SP\n";
+    ofs << "M=M+1\n";
+    ofs << "A=M-1\n";
+    ofs << "M=D\n";
+
+    // ARG = SP-n-5
+    ofs << "@SP\n";
+    ofs << "D=M\n";
+    ofs << "@" << numArgs << "\n";
+    ofs << "D=D-A\n";
+    ofs << "@5\n";
+    ofs << "D=D-A\n";
+    ofs << "@ARG\n";
+    ofs << "M=D\n";
+
+    // LCL = SP
+    ofs << "@SP\n";
+    ofs << "D=M\n";
+    ofs << "@LCL\n";
+    ofs << "M=D\n";
+
+    // goto f
+    ofs << "@" << functionName << "\n";
+    ofs << "0;JMP\n";
+
+    // (return-address)
+    ofs << "(" << return_address << ")\n";
+}
+
 void CodeWriter::writeReturn(){
     // FRAME = LCL
     ofs << "@LCL\n";
@@ -324,6 +391,7 @@ void CodeWriter::writeCode(ParseElement e){
     if(e.commandType == "C_LABEL") writeLabel(e.arg1);
     if(e.commandType == "C_GOTO") writeGoto(e.arg1);
     if(e.commandType == "C_IF") writeIf(e.arg1);
+    if(e.commandType == "C_CALL") writeCall(e.arg1, e.arg2);
     if(e.commandType == "C_RETURN") writeReturn();
     if(e.commandType == "C_FUNCTION") writeFunction(e.arg1, e.arg2);
 }
