@@ -292,6 +292,7 @@ void CodeWriter::writeReturn(){
     // goto RET
     ofs << "@R14\n";
     ofs << "A=M\n";
+    ofs << "0;JMP\n";
 }
 
 void CodeWriter::writeFunction(string functionName, int numLocals){
