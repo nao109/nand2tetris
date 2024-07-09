@@ -1,4 +1,4 @@
-#include "Assembler.hpp"
+#include "Code.hpp"
 
 map<string, string> destTable = {
     {  "",  "000"},
@@ -53,17 +53,17 @@ map<string, string> jumpTable = {
     {"JMP", "111"}
 };
 
-string Assembler::Code::dest(string dst){
+string Code::dest(string dst){
     if(destTable.count(dst)) return destTable[dst];
     else return "";
 }
 
-string Assembler::Code::comp(string cmp){
+string Code::comp(string cmp){
     if(compTable.count(cmp)) return compTable[cmp];
     return "";
 }
 
-string Assembler::Code::jump(string jmp){
+string Code::jump(string jmp){
     if(jumpTable.count(jmp)) return jumpTable[jmp];
     return "";
 }
