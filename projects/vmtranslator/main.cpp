@@ -13,8 +13,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    VMtranslator vmtranslator;
-    vmtranslator.translate(inputFile);
+    VMtranslator vmtranslator(inputFile);
+    vmtranslator.translate();
 
     return 0;
 }

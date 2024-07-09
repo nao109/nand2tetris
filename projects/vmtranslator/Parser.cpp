@@ -1,4 +1,4 @@
-#include "VMtranslator.hpp"
+#include "Parser.hpp"
 
 map<const string, string> commandTypeTable = {
     {     "add", "C_ARITHMETIC"},
@@ -37,18 +37,26 @@ vector<string> split(const string& s){
     return v;
 }
 
-string VMtranslator::Parser::commandType(const vector<string> &v){
+Parser::Parser(fs::path file) {
+    // 入力vmファイル
+    ifs.open(file);
+    if(ifs.fail()){
+        cerr << "Cannot open file: " << file.string() << "\n";
+    }
+}
+
+string Parser::commandType(const vector<string> &v){
     if(commandTypeTable.count(v[0])) return commandTypeTable[v[0]];
     else return "";
 }
 
-string VMtranslator::Parser::arg1(const vector<string> &v){
+string Parser::arg1(const vector<string> &v){
     if(commandType(v) == "C_RETURN") return "";
     else if(commandType(v) == "C_ARITHMETIC") return v[0];
     else return v[1];
 }
 
-int VMtranslator::Parser::arg2(const vector<string> &v){
+int Parser::arg2(const vector<string> &v){
     int res;
     if(commandType(v) == "C_PUSH" || commandType(v) == "C_POP" || commandType(v) == "C_FUNCTION" || commandType(v) == "C_CALL"){
         res = stoi(v[2]);
@@ -57,7 +65,7 @@ int VMtranslator::Parser::arg2(const vector<string> &v){
     return res;
 }
 
-vector<VMtranslator::ParseElement> VMtranslator::Parser::parse(ifstream &ifs){
+vector<ParseElement> Parser::parse(){
     vector<ParseElement> vpe;
     // VMの入力
     string str;
