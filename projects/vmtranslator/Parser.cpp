@@ -73,10 +73,18 @@ vector<ParseElement> Parser::parse(){
 
     while(getline(ifs, str)){
         string buf;
+        // 行頭の空白は無視
         // CRは無視
+        bool isHeadSpace = true;
         for(char i : str){
+            if(i == ' ' || i == '\t'){
+                if(isHeadSpace) continue;
+                else buf.push_back(i);
+            }
+            else isHeadSpace = false;
             if(i != '\r') buf.push_back(i);
         }
+
         // スラッシュは無視
         int slash = 0;
         string sstr;

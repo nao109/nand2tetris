@@ -12,6 +12,8 @@ CodeWriter::CodeWriter(fs::path file) {
     }
     ofs.open(outputFile);
 
+    functionName = "NULL";
+
     // SP = 256
     ofs << "@256\n";
     ofs << "D=A\n";
@@ -23,12 +25,7 @@ void CodeWriter::setFileName(string fileName){
     this->fileName = fileName.substr(0, fileName.rfind(".vm"));
 }
 
-void CodeWriter::writeArithmetic(ParseElement e){
-    // 算術コマンドでなければパス
-    if(e.commandType != "C_ARITHMETIC") return;
-
-    string command = e.arg1;
-
+void CodeWriter::writeArithmetic(string command){
     // 単項演算子
     if(command == "neg" || command == "not"){
         ofs << "@SP\n";
@@ -79,58 +76,51 @@ void CodeWriter::writeArithmetic(ParseElement e){
     }
 }
 
-void CodeWriter::writePushPop(ParseElement e){
-    // Pushコマンド、Popコマンドでなければパス
-    if(e.commandType != "C_PUSH" && e.commandType != "C_POP") return;
-
-    string command = e.commandType;
-    string arg1 = e.arg1;
-    int arg2 = e.arg2;
-
+void CodeWriter::writePushPop(string command, string segment, int index){
     // Pushコマンド
     if(command == "C_PUSH"){
-        if(arg1 == "constant"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "constant"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
         }
-        if(arg1 == "local"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "local"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
             ofs << "@LCL\n";
             ofs << "A=D+M\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "argument"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "argument"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
             ofs << "@ARG\n";
             ofs << "A=D+M\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "this"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "this"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
             ofs << "@THIS\n";
             ofs << "A=D+M\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "that"){
-            ofs << "@" << arg2 << "\n";
+        if(segment == "that"){
+            ofs << "@" << index << "\n";
             ofs << "D=A\n";
             ofs << "@THAT\n";
             ofs << "A=D+M\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "pointer"){
-            ofs << "@R" << 3 + arg2 << "\n";
+        if(segment == "pointer"){
+            ofs << "@R" << 3 + index << "\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "temp"){
-            ofs << "@R" << 5 + arg2 << "\n";
+        if(segment == "temp"){
+            ofs << "@R" << 5 + index << "\n";
             ofs << "D=M\n";
         }
-        if(arg1 == "static"){
-            ofs << "@"<< fileName << "." << arg2 << "\n";
+        if(segment == "static"){
+            ofs << "@"<< fileName << "." << index << "\n";
             ofs << "D=M\n";
         }
 
@@ -147,12 +137,12 @@ void CodeWriter::writePushPop(ParseElement e){
         ofs << "AM=M-1\n";
         ofs << "D=M\n";
 
-        if(arg1 == "local"){
+        if(segment == "local"){
             ofs << "@R13\n";
             ofs << "M=D\n";
             ofs << "@LCL\n";
             ofs << "D=M\n";
-            ofs << "@" << arg2 << "\n";
+            ofs << "@" << index << "\n";
             ofs << "D=D+A\n";
             ofs << "@R14\n";
             ofs << "M=D\n";
@@ -162,12 +152,12 @@ void CodeWriter::writePushPop(ParseElement e){
             ofs << "A=M\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "argument"){
+        if(segment == "argument"){
             ofs << "@R13\n";
             ofs << "M=D\n";
             ofs << "@ARG\n";
             ofs << "D=M\n";
-            ofs << "@" << arg2 << "\n";
+            ofs << "@" << index << "\n";
             ofs << "D=D+A\n";
             ofs << "@R14\n";
             ofs << "M=D\n";
@@ -177,12 +167,12 @@ void CodeWriter::writePushPop(ParseElement e){
             ofs << "A=M\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "this"){
+        if(segment == "this"){
             ofs << "@R13\n";
             ofs << "M=D\n";
             ofs << "@THIS\n";
             ofs << "D=M\n";
-            ofs << "@" << arg2 << "\n";
+            ofs << "@" << index << "\n";
             ofs << "D=D+A\n";
             ofs << "@R14\n";
             ofs << "M=D\n";
@@ -192,12 +182,12 @@ void CodeWriter::writePushPop(ParseElement e){
             ofs << "A=M\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "that"){
+        if(segment == "that"){
             ofs << "@R13\n";
             ofs << "M=D\n";
             ofs << "@THAT\n";
             ofs << "D=M\n";
-            ofs << "@" << arg2 << "\n";
+            ofs << "@" << index << "\n";
             ofs << "D=D+A\n";
             ofs << "@R14\n";
             ofs << "M=D\n";
@@ -207,16 +197,16 @@ void CodeWriter::writePushPop(ParseElement e){
             ofs << "A=M\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "pointer"){
-            ofs << "@R" << 3 + arg2 << "\n";
+        if(segment == "pointer"){
+            ofs << "@R" << 3 + index << "\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "temp"){
-            ofs << "@R" << 5 + arg2 << "\n";
+        if(segment == "temp"){
+            ofs << "@R" << 5 + index << "\n";
             ofs << "M=D\n";
         }
-        if(arg1 == "static"){
-            ofs << "@" << fileName << "." << arg2 << "\n";
+        if(segment == "static"){
+            ofs << "@" << fileName << "." << index << "\n";
             ofs << "M=D\n";
         }
     }
@@ -228,4 +218,30 @@ void CodeWriter::close(){
 
 string CodeWriter::newLabel(){
     return "LABEL" + to_string(++label);
+}
+
+void CodeWriter::writeLabel(string label){
+    ofs << "(" + functionName + "$" + label + ")\n";
+}
+
+void CodeWriter::writeGoto(string label){
+    ofs << "@" + functionName + "$" + label + "\n";
+    ofs << "0;JMP\n";
+}
+
+void CodeWriter::writeIf(string label){
+    ofs << "@SP\n";
+    ofs << "AM=M-1\n";
+    ofs << "D=M\n";
+    ofs << "@" + functionName + "$" + label + "\n";
+    ofs << "D;JNE\n";
+}
+
+void CodeWriter::writeCode(ParseElement e){
+    if(e.commandType == "C_ARITHMETIC") writeArithmetic(e.arg1);
+    if(e.commandType == "C_PUSH") writePushPop(e.commandType, e.arg1, e.arg2);
+    if(e.commandType == "C_POP") writePushPop(e.commandType, e.arg1, e.arg2);
+    if(e.commandType == "C_LABEL") writeLabel(e.arg1);
+    if(e.commandType == "C_GOTO") writeGoto(e.arg1);
+    if(e.commandType == "C_IF") writeIf(e.arg1);
 }
