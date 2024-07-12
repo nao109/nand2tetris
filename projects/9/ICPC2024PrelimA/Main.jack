@@ -1,0 +1,34 @@
+class Main {
+    function void main() {
+        var int n, ans;
+        var int i, a;
+
+        while (true) {
+            let n = Keyboard.readInt("How many numbers? ");
+            if (n = 0) {
+                do Sys.wait(1000);
+                do Screen.clearScreen();
+                return;
+            }
+
+            let ans = 0;
+            let i = 0;
+            while (i < n) {
+                let a = Keyboard.readInt("Enter a number: ");
+                if ((ans + a < 300) | (ans + a = 300)) {
+                    let ans = ans + a;
+                }
+                let i = i + 1;
+            }
+
+            do Output.printString("Ans: ");
+            do Output.printInt(ans);
+            do Output.println();
+
+            do Sys.wait(1000);
+            do Screen.clearScreen();
+            do Output.moveCursor(0, 0);
+        }
+        return;
+    }
+}
