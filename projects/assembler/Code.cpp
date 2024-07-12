@@ -55,15 +55,15 @@ map<string, string> jumpTable = {
 
 string Code::dest(string dst){
     if(destTable.count(dst)) return destTable[dst];
-    else return "";
+    else return string();
 }
 
 string Code::comp(string cmp){
     if(compTable.count(cmp)) return compTable[cmp];
-    return "";
+    return string();
 }
 
 string Code::jump(string jmp){
     if(jumpTable.count(jmp)) return jumpTable[jmp];
-    return "";
+    return string();
 }
