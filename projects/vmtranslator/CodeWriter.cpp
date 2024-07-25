@@ -15,6 +15,7 @@ CodeWriter::CodeWriter(fs::path file) {
     this->functionName = "NULL";
 
     // SP = 256
+    writeComments("SP=256");
     ofs << "@256\n";
     ofs << "D=A\n";
     ofs << "@SP\n";
@@ -29,6 +30,8 @@ void CodeWriter::setFileName(string fileName){
 }
 
 void CodeWriter::writeArithmetic(string command){
+    writeComments(command);
+
     // 単項演算子
     if(command == "neg" || command == "not"){
         ofs << "@SP\n";
@@ -79,7 +82,9 @@ void CodeWriter::writeArithmetic(string command){
     }
 }
 
-void CodeWriter::writePushPop(string command, string segment, int index){
+void CodeWriter::writePushPop(string command, string segment, int index){    
+    writeComments(command + " " + segment + " " + to_string(index));
+
     // Pushコマンド
     if(command == "C_PUSH"){
         if(segment == "constant"){
@@ -220,15 +225,21 @@ void CodeWriter::close(){
 }
 
 void CodeWriter::writeLabel(string label){
+    writeComments(functionName + "$" + label);
+
     ofs << "(" + functionName + "$" + label + ")\n";
 }
 
 void CodeWriter::writeGoto(string label){
+    writeComments("goto" + functionName + "$" + label);
+
     ofs << "@" + functionName + "$" + label + "\n";
     ofs << "0;JMP\n";
 }
 
 void CodeWriter::writeIf(string label){
+    writeComments("if " + functionName + "$" + label);
+
     ofs << "@SP\n";
     ofs << "AM=M-1\n";
     ofs << "D=M\n";
@@ -237,9 +248,12 @@ void CodeWriter::writeIf(string label){
 }
 
 void CodeWriter::writeCall(string functionName, int numArgs){
+    writeComments("call " + functionName + " " + to_string(numArgs));
+
     string return_address = newLabel();
 
     // push return-address
+    writeComments("push return-address");
     ofs << "@" << return_address << "\n";
     ofs << "D=A\n";
     ofs << "@SP\n";
@@ -248,6 +262,7 @@ void CodeWriter::writeCall(string functionName, int numArgs){
     ofs << "M=D\n";
 
     // push LCL
+    writeComments("push LCL");
     ofs << "@LCL\n";
     ofs << "D=M\n";
     ofs << "@SP\n";
@@ -256,6 +271,7 @@ void CodeWriter::writeCall(string functionName, int numArgs){
     ofs << "M=D\n";
 
     // push ARG
+    writeComments("push ARG");
     ofs << "@ARG\n";
     ofs << "D=M\n";
     ofs << "@SP\n";
@@ -264,6 +280,7 @@ void CodeWriter::writeCall(string functionName, int numArgs){
     ofs << "M=D\n";
 
     // push THIS
+    writeComments("push THIS");
     ofs << "@THIS\n";
     ofs << "D=M\n";
     ofs << "@SP\n";
@@ -272,6 +289,7 @@ void CodeWriter::writeCall(string functionName, int numArgs){
     ofs << "M=D\n";
 
     // push THAT
+    writeComments("push THAT");
     ofs << "@THAT\n";
     ofs << "D=M\n";
     ofs << "@SP\n";
@@ -280,6 +298,7 @@ void CodeWriter::writeCall(string functionName, int numArgs){
     ofs << "M=D\n";
 
     // ARG = SP-n-5
+    writeComments("ARG = SP-n-5");
     ofs << "@SP\n";
     ofs << "D=M\n";
     ofs << "@" << numArgs << "\n";
@@ -290,12 +309,14 @@ void CodeWriter::writeCall(string functionName, int numArgs){
     ofs << "M=D\n";
 
     // LCL = SP
+    writeComments("LCL = SP");
     ofs << "@SP\n";
     ofs << "D=M\n";
     ofs << "@LCL\n";
     ofs << "M=D\n";
 
     // goto f
+    writeComments("goto f");
     ofs << "@" << functionName << "\n";
     ofs << "0;JMP\n";
 
@@ -305,12 +326,14 @@ void CodeWriter::writeCall(string functionName, int numArgs){
 
 void CodeWriter::writeReturn(){
     // FRAME = LCL
+    writeComments("FRAME = LCL");
     ofs << "@LCL\n";
     ofs << "D=M\n";
     ofs << "@R13\n";
     ofs << "M=D\n";
 
     // RET = *(FRAME-5)
+    writeComments("RET = *(FRAME-5)");
     ofs << "@5\n";
     ofs << "D=A\n";
     ofs << "@LCL\n";
@@ -320,6 +343,7 @@ void CodeWriter::writeReturn(){
     ofs << "M=D\n";
 
     // *ARG = pop()
+    writeComments("*ARG = pop()");
     ofs << "@SP\n";
     ofs << "A=M-1\n";
     ofs << "D=M\n";
@@ -328,12 +352,14 @@ void CodeWriter::writeReturn(){
     ofs << "M=D\n";
 
     // SP = ARG+1
+    writeComments("SP = ARG+1");
     ofs << "@ARG\n";
     ofs << "D=M\n";
     ofs << "@SP\n";
     ofs << "M=D+1\n";
 
     // THAT = *(FRAME-1)
+    writeComments("THAT = *(FRAME-1)");
     ofs << "@R13\n";
     ofs << "MD=M-1\n";
     ofs << "A=D\n";
@@ -342,6 +368,7 @@ void CodeWriter::writeReturn(){
     ofs << "M=D\n";
 
     // THIS = *(FRAME-2)
+    writeComments("THIS = *(FRAME-2)");
     ofs << "@R13\n";
     ofs << "MD=M-1\n";
     ofs << "A=D\n";
@@ -350,6 +377,7 @@ void CodeWriter::writeReturn(){
     ofs << "M=D\n";
 
     // ARG = *(FRAME-3)
+    writeComments("ARG = *(FRAME-3)");
     ofs << "@R13\n";
     ofs << "MD=M-1\n";
     ofs << "A=D\n";
@@ -358,6 +386,7 @@ void CodeWriter::writeReturn(){
     ofs << "M=D\n";
 
     // LCL = *(FRAME-4)
+    writeComments("LCL = *(FRAME-4)");
     ofs << "@R13\n";
     ofs << "MD=M-1\n";
     ofs << "A=D\n";
@@ -366,12 +395,15 @@ void CodeWriter::writeReturn(){
     ofs << "M=D\n";
 
     // goto RET
+    writeComments("goto RET");
     ofs << "@R14\n";
     ofs << "A=M\n";
     ofs << "0;JMP\n";
 }
 
 void CodeWriter::writeFunction(string functionName, int numLocals){
+    writeComments("function " + functionName + " " + to_string(numLocals));
+
     this->functionName = functionName;
 
     // (f)
@@ -379,6 +411,8 @@ void CodeWriter::writeFunction(string functionName, int numLocals){
 
     // repeat k times:
     // push 0
+    writeComments("repeat k times:");
+    writeComments("push 0");
     ofs << "@0\n";
     ofs << "D=A\n";
     ofs << "@SP\n";
@@ -407,4 +441,8 @@ void CodeWriter::writeCode(ParseElement e){
 
 string CodeWriter::newLabel(){
     return "LABEL" + to_string(++label);
+}
+
+void CodeWriter::writeComments(string comments){
+    ofs << "// " << comments << "\n";
 }
