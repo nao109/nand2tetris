@@ -20,6 +20,8 @@ class CodeWriter {
     void writeReturn();
     void writeFunction(string functionName, int numLocals);
 
+    void writeComments(string comments);
+
     string newLabel();
 
 public:
