@@ -1,13 +1,13 @@
 #include "CompilationEngine.hpp"
 
-CompilationEngine::CompilationEngine(fs::path inputFile) : tokenizer(inputFile) {
+CompilationEngine::CompilationEngine(std::filesystem::path inputFile) : tokenizer(inputFile) {
     // 出力jackファイル
-    string outputFile = inputFile.string();
+    std::string outputFile = inputFile.string();
     outputFile.replace(outputFile.rfind(".jack"), 5, ".xml");
 
     ofs.open(outputFile);
     if(ofs.fail()){
-        cerr << "Cannot open file: " << outputFile << "\n";
+        std::cerr << "Cannot open file: " << outputFile << "\n";
     }
 }
 
@@ -15,7 +15,7 @@ void CompilationEngine::compile(){
     compileClass();
 
     if(tokenizer.hasMoreTokens()){
-        cerr << "Error: Compilation complete, but unresolved tokens remain.\n";
+        std::cerr << "Error: Compilation complete, but unresolved tokens remain.\n";
     }
 }
 
@@ -444,7 +444,7 @@ void CompilationEngine::compileTerminal(){
     if(tokenizer.hasMoreTokens()) tokenizer.advance();
 }
 
-set<string> type = {"int", "char", "boolean"};
+std::set<std::string> type = {"int", "char", "boolean"};
 bool CompilationEngine::isType(){
     if(tokenizer.tokenType() == TokenType::KEYWORD){
         return (type.count(tokenizer.keyword()));
@@ -453,17 +453,17 @@ bool CompilationEngine::isType(){
     return false;
 }
 
-set<char> ops = {'+', '-', '*', '/', '&', '|', '<', '>', '='};
+std::set<char> ops = {'+', '-', '*', '/', '&', '|', '<', '>', '='};
 bool CompilationEngine::isOp(){
     return (tokenizer.tokenType() == TokenType::SYMBOL && ops.count(tokenizer.symbol()));
 }
 
-set<char> unaryOps = {'-', '~'};
+std::set<char> unaryOps = {'-', '~'};
 bool CompilationEngine::isUnaryOp(){
     return (tokenizer.tokenType() == TokenType::SYMBOL && unaryOps.count(tokenizer.symbol()));
 }
 
-set<string> statementKeywords = {"let", "if", "while", "do", "return"};
+std::set<std::string> statementKeywords = {"let", "if", "while", "do", "return"};
 bool CompilationEngine::isStatement(){
     return (tokenizer.tokenType() == TokenType::KEYWORD && statementKeywords.count(tokenizer.keyword()));
 }

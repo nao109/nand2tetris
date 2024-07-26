@@ -1,11 +1,17 @@
 #ifndef COMPILATIONENGINE_H_
 #define COMPILATIONENGINE_H_
 
+#include <iostream>
+#include <filesystem>
+#include <fstream>
+#include <set>
+#include <string>
+
 #include "Utils.hpp"
 #include "JackTokenizer.hpp"
 
 class CompilationEngine {
-    ofstream ofs;
+    std::ofstream ofs;
     JackTokenizer tokenizer;
 
     void compileClass();
@@ -34,7 +40,7 @@ class CompilationEngine {
     bool isStatement();
 
 public:
-    CompilationEngine(fs::path inputFile);
+    CompilationEngine(std::filesystem::path inputFile);
     void compile();
 };
 

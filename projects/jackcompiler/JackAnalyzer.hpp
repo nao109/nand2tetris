@@ -1,17 +1,17 @@
 #ifndef JACKANALYZER_H_
 #define JACKANALYZER_H_
 
-#include "Utils.hpp"
-#include "JackTokenizer.hpp"
+#include <filesystem>
+#include <string>
 #include "CompilationEngine.hpp"
 
 class JackAnalyzer {
-    fs::path inputFile;
+    std::filesystem::path inputFile;
 
-    void analyzeFile(fs::path inputFile);
+    void analyzeFile(std::filesystem::path inputFile);
 
 public:
-    JackAnalyzer(fs::path inputFile);
+    JackAnalyzer(std::filesystem::path inputFile);
     void analyze();
 };
 

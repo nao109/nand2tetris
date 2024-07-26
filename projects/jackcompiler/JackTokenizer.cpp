@@ -1,16 +1,16 @@
 #include "JackTokenizer.hpp"
 
-set<string> keywords = {
+std::set<std::string> keywords = {
     "class", "method", "function", "constructor", "int", "boolean", "char", "void", "var","static",
     "field", "let", "do", "if", "else", "while", "return", "true", "false", "null", "this"
 };
-set<char> symbols = {'{', '}', '(', ')', '[', ']', '.', ',', ';', '+', '-', '*', '/', '&', '|', '<', '>', '=', '~'};
+std::set<char> symbols = {'{', '}', '(', ')', '[', ']', '.', ',', ';', '+', '-', '*', '/', '&', '|', '<', '>', '=', '~'};
 
-JackTokenizer::JackTokenizer(fs::path inputFile) {
+JackTokenizer::JackTokenizer(std::filesystem::path inputFile) {
     // 入力jackファイル
     ifs.open(inputFile);
     if(ifs.fail()){
-        cerr << "Cannot open file: " << inputFile.string() << "\n";
+        std::cerr << "Cannot open file: " << inputFile.string() << "\n";
     }
 
     // 初期化
@@ -34,7 +34,7 @@ TokenType JackTokenizer::tokenType(){
     return tokens[id].tokenType;
 }
 
-string JackTokenizer::keyword(){
+std::string JackTokenizer::keyword(){
     return tokens[id].keyword.value();
 }
 
@@ -42,7 +42,7 @@ char JackTokenizer::symbol(){
     return tokens[id].symbol.value();
 }
 
-string JackTokenizer::identifier(){
+std::string JackTokenizer::identifier(){
     return tokens[id].identifier.value();
 }
 
@@ -50,7 +50,7 @@ int JackTokenizer::intVal(){
     return tokens[id].intVal.value();
 }
 
-string JackTokenizer::stringVal(){
+std::string JackTokenizer::stringVal(){
     return tokens[id].stringVal.value();
 }
 
@@ -62,40 +62,40 @@ char JackTokenizer::peekSymbol(){
     return tokens[id + 1].symbol.value();
 }
 
-void JackTokenizer::printTokens(fs::path inputFile){
-    string TokensFile = inputFile.string();
+void JackTokenizer::printTokens(std::filesystem::path inputFile){
+    std::string TokensFile = inputFile.string();
     TokensFile.replace(TokensFile.rfind(".jack"), 5, "T.xml");
 
-    ofstream ofsT;
+    std::ofstream ofsT;
 
     ofsT.open(TokensFile);
     if(ofsT.fail()){
-        cerr << "Cannot open file: " << TokensFile << "\n";
+        std::cerr << "Cannot open file: " << TokensFile << "\n";
     }
     ofsT << "<tokens>\n";
     for(Token token : tokens){
         switch(token.tokenType){
             case TokenType::KEYWORD:
-                if(!token.keyword.has_value()) cerr << static_cast<int>(token.tokenType) << " " << "1\n";
+                if(!token.keyword.has_value()) std::cerr << static_cast<int>(token.tokenType) << " " << "1\n";
                 ofsT << "<keyword> " << token.keyword.value() << " </keyword>\n";
                 break;
             case TokenType::SYMBOL:
-                if(!token.symbol.has_value()) cerr << static_cast<int>(token.tokenType) << " " << "2\n";
+                if(!token.symbol.has_value()) std::cerr << static_cast<int>(token.tokenType) << " " << "2\n";
                 if(token.symbol.value() == '<') ofsT << "<symbol> &lt; </symbol>\n";
                 else if(token.symbol.value() == '>') ofsT << "<symbol> &gt; </symbol>\n";
                 else if(token.symbol.value() == '&') ofsT << "<symbol> &amp; </symbol>\n";
                 else ofsT << "<symbol> " << token.symbol.value() << " </symbol>\n";
                 break;
             case TokenType::IDENTIFIER:
-                if(!token.identifier.has_value()) cerr << static_cast<int>(token.tokenType) << " " << "3\n";
+                if(!token.identifier.has_value()) std::cerr << static_cast<int>(token.tokenType) << " " << "3\n";
                 ofsT << "<identifier> " << token.identifier.value() << " </identifier>\n";
                 break;
             case TokenType::INT_CONST:
-                if(!token.intVal.has_value()) cerr << static_cast<int>(token.tokenType) << " " << "4\n";
+                if(!token.intVal.has_value()) std::cerr << static_cast<int>(token.tokenType) << " " << "4\n";
                 ofsT << "<integerConstant> " << token.intVal.value() << " </integerConstant>\n";
                 break;
             case TokenType::STRING_CONST:
-                if(!token.stringVal.has_value()) cerr << static_cast<int>(token.tokenType) << " " << "5\n";
+                if(!token.stringVal.has_value()) std::cerr << static_cast<int>(token.tokenType) << " " << "5\n";
                 ofsT << "<stringConstant> " << token.stringVal.value() << " </stringConstant>\n";
                 break;
         }
@@ -162,22 +162,22 @@ void JackTokenizer::tokenize(){
     }
 }
 
-void JackTokenizer::addKeywordToken(string tokenVal){
-    tokens.push_back({TokenType::KEYWORD, tokenVal, nullopt, nullopt, nullopt, nullopt});
+void JackTokenizer::addKeywordToken(std::string tokenVal){
+    tokens.push_back({TokenType::KEYWORD, tokenVal, std::nullopt, std::nullopt, std::nullopt, std::nullopt});
 }
 
-void JackTokenizer::addSymbolToken(string tokenVal){
-    tokens.push_back({TokenType::SYMBOL, nullopt, tokenVal.front(), nullopt, nullopt, nullopt});
+void JackTokenizer::addSymbolToken(std::string tokenVal){
+    tokens.push_back({TokenType::SYMBOL, std::nullopt, tokenVal.front(), std::nullopt, std::nullopt, std::nullopt});
 }
 
-void JackTokenizer::addIdentifierToken(string tokenVal){
-    tokens.push_back({TokenType::IDENTIFIER, nullopt, nullopt, tokenVal, nullopt, nullopt});
+void JackTokenizer::addIdentifierToken(std::string tokenVal){
+    tokens.push_back({TokenType::IDENTIFIER, std::nullopt, std::nullopt, tokenVal, std::nullopt, std::nullopt});
 }
 
-void JackTokenizer::addIntConstToken(string tokenVal){
-    tokens.push_back({TokenType::INT_CONST, nullopt, nullopt, nullopt, stoi(tokenVal), nullopt});
+void JackTokenizer::addIntConstToken(std::string tokenVal){
+    tokens.push_back({TokenType::INT_CONST, std::nullopt, std::nullopt, std::nullopt, stoi(tokenVal), std::nullopt});
 }
 
-void JackTokenizer::addStringConstToken(string tokenVal){
-    tokens.push_back({TokenType::STRING_CONST, nullopt, nullopt, nullopt, nullopt, tokenVal});
+void JackTokenizer::addStringConstToken(std::string tokenVal){
+    tokens.push_back({TokenType::STRING_CONST, std::nullopt, std::nullopt, std::nullopt, std::nullopt, tokenVal});
 }

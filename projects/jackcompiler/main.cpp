@@ -1,15 +1,18 @@
+#include <iostream>
+#include <filesystem>
+
 #include "JackAnalyzer.hpp"
 
 int main(int argc, char *argv[]) {
     if(argc != 2){
-        cerr << "Cannot start program\n";
+        std::cerr << "Cannot start program\n";
         return 1;
     }
 
-    fs::path inputFile = argv[1];
+    std::filesystem::path inputFile = argv[1];
 
-    if(!fs::exists(inputFile)){
-        cerr << "File does not exist\n";
+    if(!std::filesystem::exists(inputFile)){
+        std::cerr << "File does not exist\n";
         return 1;
     }
 

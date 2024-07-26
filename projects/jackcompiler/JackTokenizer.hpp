@@ -1,38 +1,45 @@
 #ifndef JACKTOKENIZER_H_
 #define JACKTOKENIZER_H_
 
+#include <fstream>
+#include <iostream>
+#include <set>
+#include <string>
+#include <vector>
+#include <filesystem>
+
 #include "Utils.hpp"
 
 class JackTokenizer {
-    ifstream ifs;
-    string tokenVal;
-    vector<Token> tokens;
+    std::ifstream ifs;
+    std::string tokenVal;
+    std::vector<Token> tokens;
     unsigned long id;
 
     void removeOneLineComments();
     void removeSomeLinesComments();
 
-    void addKeywordToken(string tokenVal);
-    void addSymbolToken(string tokenVal);
-    void addIdentifierToken(string tokenVal);
-    void addIntConstToken(string tokenVal);
-    void addStringConstToken(string tokenVal);
+    void addKeywordToken(std::string tokenVal);
+    void addSymbolToken(std::string tokenVal);
+    void addIdentifierToken(std::string tokenVal);
+    void addIntConstToken(std::string tokenVal);
+    void addStringConstToken(std::string tokenVal);
 
     void tokenize();
-    void printTokens(fs::path inputFile);
+    void printTokens(std::filesystem::path inputFile);
 
 public:
-    JackTokenizer(fs::path inputFile);
+    JackTokenizer(std::filesystem::path inputFile);
 
     bool hasMoreTokens();
     void advance();
 
     TokenType tokenType();
-    string keyword();
+    std::string keyword();
     char symbol();
-    string identifier();
+    std::string identifier();
     int intVal();
-    string stringVal();
+    std::string stringVal();
 
     TokenType peekTokenType();
     char peekSymbol();
