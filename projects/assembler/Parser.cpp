@@ -31,7 +31,7 @@ string Parser::symbol(string str){
 string Parser::dest(string str){
     int pos = str.find("=");
     string res;
-    if(pos == -1) res = "";
+    if(pos == -1) res = string();
     else res = str.substr(0, pos);
     return res;
 }
@@ -40,7 +40,7 @@ string Parser::comp(string str){
     int pos1 = str.find("=");
     int pos2 = str.find(";");
     string res;
-    if(pos1 == -1 && pos2 == -1) res = "";
+    if(pos1 == -1 && pos2 == -1) res = string();
     else if(pos1 != -1 && pos2 != -1) res = str.substr(pos1 + 1, pos2 - pos1);
     else if(pos1 != -1 && pos2 == -1) res = str.substr(pos1 + 1);
     else res = str.substr(0, pos2 + 1);
@@ -51,7 +51,7 @@ string Parser::comp(string str){
 string Parser::jump(string str){
     int pos = str.find(";");
     string res;
-    if(pos == -1) return "";
+    if(pos == -1) return string();
     else res = str.substr(pos + 1);
     res.pop_back();
     return res;

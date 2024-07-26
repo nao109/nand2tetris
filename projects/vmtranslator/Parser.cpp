@@ -47,11 +47,11 @@ Parser::Parser(fs::path file) {
 
 string Parser::commandType(const vector<string> &v){
     if(commandTypeTable.count(v[0])) return commandTypeTable[v[0]];
-    else return "";
+    else return string();
 }
 
 string Parser::arg1(const vector<string> &v){
-    if(commandType(v) == "C_RETURN") return "";
+    if(commandType(v) == "C_RETURN") return string();
     else if(commandType(v) == "C_ARITHMETIC") return v[0];
     else return v[1];
 }
