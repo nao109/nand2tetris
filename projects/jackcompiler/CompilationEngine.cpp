@@ -23,11 +23,11 @@ void CompilationEngine::compileClass(){
     ofs << "<class>\n";
 
     // 'class'
-    compileTerminal();
+    compileKeyword();
     // className
-    compileTerminal();
+    compileIdentifier();
     // '{'
-    compileTerminal();
+    compileSymbol();
     // classVarDec*
     while(tokenizer.tokenType() == TokenType::KEYWORD && (tokenizer.keyword() == "static" || tokenizer.keyword() == "field")){
         // classVarDec
@@ -39,7 +39,7 @@ void CompilationEngine::compileClass(){
         compileSubroutine();
     }
     // '}'
-    compileTerminal();
+    compileSymbol();
 
     ofs << "</class>\n";
 }
@@ -49,20 +49,20 @@ void CompilationEngine::compileClassVarDec(){
     ofs << "<classVarDec>\n";
 
     // ('static' | 'field')
-    compileTerminal();
+    compileKeyword();
     // type
-    compileTerminal();
+    compileType();
     // varName
-    compileTerminal();
+    compileIdentifier();
     // (',' varName)*
     while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
         // ','
-        compileTerminal();
+        compileSymbol();
         // varName
-        compileTerminal();
+        compileIdentifier();
     }
     // ';'
-    compileTerminal();
+    compileSymbol();
 
     ofs << "</classVarDec>\n";
 }
@@ -72,19 +72,38 @@ void CompilationEngine::compileSubroutine(){
     ofs << "<subroutineDec>\n";
 
     // ('constructor' | 'function' | 'method')
-    compileTerminal();
+    compileKeyword();
     // ('void' | type)
-    compileTerminal();
+    if(tokenizer.tokenType() == TokenType::KEYWORD && tokenizer.keyword() == "void"){
+        compileKeyword();
+    }
+    else if(isType()){
+        compileType();
+    }
     // subroutineName
-    compileTerminal();
+    compileIdentifier();
     // '('
-    compileTerminal();
+    compileSymbol();
     // parameterList
     compileParameterList();
     // ')'
-    compileTerminal();
+    compileSymbol();
     // subroutineBody
-    compileSubroutineBody();
+    ofs << "<subroutineBody>\n";
+
+    // '{'
+    compileSymbol();
+    // varDec*
+    while(tokenizer.tokenType() == TokenType::KEYWORD && tokenizer.keyword() == "var"){
+        // varDec
+        compileVarDec();
+    }
+    // statements
+    compileStatements();
+    // '}'
+    compileSymbol();
+
+    ofs << "</subroutineBody>\n";
 
     ofs << "</subroutineDec>\n";
 }
@@ -95,59 +114,41 @@ void CompilationEngine::compileParameterList(){
     // ((type varName) (',' type varName)*)?
     if(isType()){
         // type
-        compileTerminal();
+        compileType();
         // varName
-        compileTerminal();
+        compileIdentifier();
         // (',' type varName)*
         while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
             // ','
-            compileTerminal();
+            compileSymbol();
             // type
-            compileTerminal();
+            compileType();
             // varName
-            compileTerminal();
+            compileIdentifier();
         }
     }
 
     ofs << "</parameterList>\n";
 }
 
-void CompilationEngine::compileSubroutineBody(){
-    ofs << "<subroutineBody>\n";
-
-    // '{'
-    compileTerminal();
-    // varDec*
-    while(tokenizer.tokenType() == TokenType::KEYWORD && tokenizer.keyword() == "var"){
-        // varDec
-        compileVarDec();
-    }
-    // statements
-    compileStatements();
-    // '}'
-    compileTerminal();
-
-    ofs << "</subroutineBody>\n";
-}
-
 void CompilationEngine::compileVarDec(){
     ofs << "<varDec>\n";
 
     // 'var'
-    compileTerminal();
+    compileKeyword();
     // type
-    compileTerminal();
+    compileType();
     // varName
-    compileTerminal();
+    compileIdentifier();
     // (',' varName)*
     while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
         // ','
-        compileTerminal();
+        compileSymbol();
         // varName
-        compileTerminal();
+        compileIdentifier();
     }
     // ';'
-    compileTerminal();
+    compileSymbol();
 
     ofs << "</varDec>\n";
 }
@@ -158,58 +159,54 @@ void CompilationEngine::compileStatements(){
     // statement*
     while(isStatement()){
         // statement
-        compileStatement();
+        // (letStatement | ifStatement | whileStatement | doStatement | returnStatement)
+        if(tokenizer.keyword() == "let"){
+            // letStatement
+            compileLet();
+        }
+        else if(tokenizer.keyword() == "if"){
+            // ifStatement
+            compileIf();
+        }
+        else if(tokenizer.keyword() == "while"){
+            // whileStatement
+            compileWhile();
+        }
+        else if(tokenizer.keyword() == "do"){
+            // doStatement
+            compileDo();
+        }
+        else{
+            // returnStatement
+            compileReturn();
+        }
     }
 
     ofs << "</statements>\n";
-}
-
-void CompilationEngine::compileStatement(){
-    // (letStatement | ifStatement | whileStatement | doStatement | returnStatement)
-    if(tokenizer.keyword() == "let"){
-        // letStatement
-        compileLet();
-    }
-    else if(tokenizer.keyword() == "if"){
-        // ifStatement
-        compileIf();
-    }
-    else if(tokenizer.keyword() == "while"){
-        // whileStatement
-        compileWhile();
-    }
-    else if(tokenizer.keyword() == "do"){
-        // doStatement
-        compileDo();
-    }
-    else{
-        // returnStatement
-        compileReturn();
-    }
 }
 
 void CompilationEngine::compileLet(){
     ofs << "<letStatement>\n";
 
     // 'let'
-    compileTerminal();
+    compileKeyword();
     // varName
-    compileTerminal();
+    compileIdentifier();
     // ('[' expression ']')?
     if(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == '['){
         // '['
-        compileTerminal();
+        compileSymbol();
         // expression
         compileExpression();
         // ']'
-        compileTerminal();
+        compileSymbol();
     }
     // '='
-    compileTerminal();
+    compileSymbol();
     // expression
     compileExpression();
     // ';'
-    compileTerminal();
+    compileSymbol();
 
     ofs << "</letStatement>\n";
 }
@@ -218,29 +215,29 @@ void CompilationEngine::compileIf(){
     ofs << "<ifStatement>\n";
 
     // 'if'
-    compileTerminal();
+    compileKeyword();
     // '('
-    compileTerminal();
+    compileSymbol();
     // expression
     compileExpression();
     // ')'
-    compileTerminal();
+    compileSymbol();
     // '{'
-    compileTerminal();
+    compileSymbol();
     // statements
     compileStatements();
     // '}'
-    compileTerminal();
+    compileSymbol();
     // ('else' '{' statements '}')?
     if(tokenizer.tokenType() == TokenType::KEYWORD && tokenizer.keyword() == "else"){
         // 'else'
-        compileTerminal();
+        compileKeyword();
         // '{'
-        compileTerminal();
+        compileSymbol();
         // statements
         compileStatements();
         // '}'
-        compileTerminal();
+        compileSymbol();
     }
 
     ofs << "</ifStatement>\n";
@@ -250,19 +247,19 @@ void CompilationEngine::compileWhile(){
     ofs << "<whileStatement>\n";
 
     // 'while'
-    compileTerminal();
+    compileKeyword();
     // '('
-    compileTerminal();
+    compileSymbol();
     // expression
     compileExpression();
     // ')'
-    compileTerminal();
+    compileSymbol();
     // '{'
-    compileTerminal();
+    compileSymbol();
     // statements
     compileStatements();
     // '}'
-    compileTerminal();
+    compileSymbol();
 
     ofs << "</whileStatement>\n";
 }
@@ -271,11 +268,25 @@ void CompilationEngine::compileDo(){
     ofs << "<doStatement>\n";
 
     // 'do'
-    compileTerminal();
+    compileKeyword();
     // subroutineCall
-    compileSubroutineCall();
+    // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
+    if(tokenizer.peekTokenType() == TokenType::SYMBOL || tokenizer.peekSymbol() == '.'){
+        // (className | varName)
+        compileIdentifier();
+        // '.'
+        compileSymbol();
+    }
+    // subroutineName
+    compileIdentifier();
+    // '('
+    compileSymbol();
+    // expressionList
+    compileExpressionList();
+    // ')'
+    compileSymbol();
     // ';'
-    compileTerminal();
+    compileSymbol();
 
     ofs << "</doStatement>\n";
 }
@@ -284,13 +295,13 @@ void CompilationEngine::compileReturn(){
     ofs << "<returnStatement>\n";
 
     // 'return'
-    compileTerminal();
+    compileKeyword();
     // expression?
     if(tokenizer.tokenType() != TokenType::SYMBOL || tokenizer.symbol() != ';'){
         compileExpression();
     }
     // ';'
-    compileTerminal();
+    compileSymbol();
 
     ofs << "</returnStatement>\n";
 }
@@ -303,7 +314,7 @@ void CompilationEngine::compileExpression(){
     // (op term)*
     while(isOp()){
         // op
-        compileTerminal();
+        compileSymbol();
         // term
         compileTerm();
     }
@@ -317,87 +328,72 @@ void CompilationEngine::compileTerm(){
     // integerConstant | stringConstant | keywordConstant | varName | varName '[' expression ']' | subroutineCall | '(' expression ')' | unaryOp term
     if(tokenizer.tokenType() == TokenType::INT_CONST){
         // integerConstant
-        compileTerminal();
+        if(tokenizer.tokenType() == TokenType::INT_CONST){
+            ofs << "<integerConstant> " << tokenizer.intVal() << " </integerConstant>\n";
+            if(tokenizer.hasMoreTokens()) tokenizer.advance();
+        }
     }
     else if(tokenizer.tokenType() == TokenType::STRING_CONST){
         // stringConstant
-        compileTerminal();
+        if(tokenizer.tokenType() == TokenType::STRING_CONST){
+            ofs << "<stringConstant> " << tokenizer.stringVal() << " </stringConstant>\n";
+            if(tokenizer.hasMoreTokens()) tokenizer.advance();
+        }
     }
     else if(tokenizer.tokenType() == TokenType::KEYWORD && (tokenizer.keyword() == "true" || tokenizer.keyword() == "false" || tokenizer.keyword() == "null" || tokenizer.keyword() == "this")){
         // keywordConstant
-        compileTerminal();
+        compileKeyword();
     }
     else if(tokenizer.tokenType() == TokenType::IDENTIFIER){
         // varName | varName '[' expression ']' | subroutineCall
-        if(!tokenizer.hasMoreTokens()){
+        if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '['){
             // varName
-            compileTerminal();
-        }
-        else if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '['){
-            // varName
-            compileTerminal();
+            compileIdentifier();
             // '['
-            compileTerminal();
+            compileSymbol();
             // expression
             compileExpression();
             // ']'
-            compileTerminal();
+            compileSymbol();
         }
         else if(tokenizer.peekTokenType() == TokenType::SYMBOL && (tokenizer.peekSymbol() == '(' || tokenizer.peekSymbol() == '.')){
-            // subroutineCall
-            compileSubroutineCall();
+            // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
+            if(tokenizer.peekTokenType() == TokenType::SYMBOL || tokenizer.peekSymbol() == '.'){
+                // (className | varName)
+                compileIdentifier();
+                // '.'
+                compileSymbol();
+            }
+            // subroutineName
+            compileIdentifier();
+            // '('
+            compileSymbol();
+            // expressionList
+            compileExpressionList();
+            // ')'
+            compileSymbol();
         }
         else{
             // varName
-            compileTerminal();
+            compileIdentifier();
         }
     }
     else if(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == '('){
         // '('
-        compileTerminal();
+        compileSymbol();
         // expression
         compileExpression();
         // ')'
-        compileTerminal();
+        compileSymbol();
     }
     else if(tokenizer.tokenType() == TokenType::SYMBOL && isUnaryOp()){
         // unaryOp
-        compileTerminal();
+        compileSymbol();
         // term
         compileTerm();
     }
 
     ofs << "</term>\n";
-}
-
-void CompilationEngine::compileSubroutineCall(){
-    // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
-    if(tokenizer.hasMoreTokens()){
-        if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '('){
-            // subroutineName
-            compileTerminal();
-            // '('
-            compileTerminal();
-            // expressionList
-            compileExpressionList();
-            // ')'
-            compileTerminal();
-        }
-        else{
-            // (className | varName)
-            compileTerminal();
-            // '.'
-            compileTerminal();
-            // subroutineName
-            compileTerminal();
-            // '('
-            compileTerminal();
-            // expressionList
-            compileExpressionList();
-            // ')'
-            compileTerminal();
-        }
-    }
 }
 
 void CompilationEngine::compileExpressionList(){
@@ -410,7 +406,7 @@ void CompilationEngine::compileExpressionList(){
         // (',' expression)*
         while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
             // ','
-            compileTerminal();
+            compileSymbol();
             // expression
             compileExpression();
         }
@@ -419,29 +415,40 @@ void CompilationEngine::compileExpressionList(){
     ofs << "</expressionList>\n";
 }
 
-void CompilationEngine::compileTerminal(){
-    switch(tokenizer.tokenType()){
-        case TokenType::KEYWORD:
-            ofs << "<keyword> " << tokenizer.keyword() << " </keyword>\n";
-            break;
-        case TokenType::SYMBOL:
-            if(tokenizer.symbol() == '<') ofs << "<symbol> &lt; </symbol>\n";
-            else if(tokenizer.symbol() == '>') ofs << "<symbol> &gt; </symbol>\n";
-            else if(tokenizer.symbol() == '&') ofs << "<symbol> &amp; </symbol>\n";
-            else ofs << "<symbol> " << tokenizer.symbol() << " </symbol>\n";
-            break;
-        case TokenType::INT_CONST:
-            ofs << "<integerConstant> " << tokenizer.intVal() << " </integerConstant>\n";
-            break;
-        case TokenType::STRING_CONST:
-            ofs << "<stringConstant> " << tokenizer.stringVal() << " </stringConstant>\n";
-            break;
-        case TokenType::IDENTIFIER:
-            ofs << "<identifier> " << tokenizer.identifier() << " </identifier>\n";
-            break;
+void CompilationEngine::compileKeyword(){
+    if(tokenizer.tokenType() == TokenType::KEYWORD){
+        ofs << "<keyword> " << tokenizer.keyword() << " </keyword>\n";
+        if(tokenizer.hasMoreTokens()) tokenizer.advance();
     }
+}
 
-    if(tokenizer.hasMoreTokens()) tokenizer.advance();
+void CompilationEngine::compileSymbol(){
+    if(tokenizer.tokenType() == TokenType::SYMBOL){
+        if(tokenizer.symbol() == '<') ofs << "<symbol> &lt; </symbol>\n";
+        else if(tokenizer.symbol() == '>') ofs << "<symbol> &gt; </symbol>\n";
+        else if(tokenizer.symbol() == '&') ofs << "<symbol> &amp; </symbol>\n";
+        else ofs << "<symbol> " << tokenizer.symbol() << " </symbol>\n";
+        if(tokenizer.hasMoreTokens()) tokenizer.advance();
+    }
+}
+
+void CompilationEngine::compileIdentifier(){
+    if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+        std::string idVal = tokenizer.identifier();
+        ofs << "<identifier> " << idVal << " </identifier>\n";
+        if(tokenizer.hasMoreTokens()) tokenizer.advance();
+    }
+}
+
+void CompilationEngine::compileType(){
+    if(isType()){
+        if(tokenizer.tokenType() == TokenType::KEYWORD){
+            compileKeyword();
+        }
+        if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+            compileIdentifier();
+        }
+    }
 }
 
 std::set<std::string> type = {"int", "char", "boolean"};
@@ -449,7 +456,9 @@ bool CompilationEngine::isType(){
     if(tokenizer.tokenType() == TokenType::KEYWORD){
         return (type.count(tokenizer.keyword()));
     }
-    if(tokenizer.tokenType() == TokenType::IDENTIFIER) return true;
+    if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+        return true;
+    }
     return false;
 }
 

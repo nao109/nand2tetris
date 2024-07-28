@@ -1,7 +1,7 @@
 #include <iostream>
 #include <filesystem>
 
-#include "JackAnalyzer.hpp"
+#include "JackCompiler.hpp"
 
 int main(int argc, char *argv[]) {
     if(argc != 2){
@@ -16,8 +16,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    JackAnalyzer analyzer(inputFile);
-    analyzer.analyze();
+    JackCompiler compiler(inputFile);
+    compiler.compile();
 
     return 0;
 }

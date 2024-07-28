@@ -3,14 +3,14 @@
 title: JackCompiler
 ---
 classDiagram
-    JackAnalyzer o-- CompilationEngine
+    JackCompiler o-- CompilationEngine
     CompilationEngine o-- JackTokenizer
-    class JackAnalyzer{
+    class JackCompiler{
         inputFile
 
-        JackAnalyzer(inputFile)
-        analyzeFile(inputFile)
-        analyze()
+        JackCompiler(inputFile)
+        compileFile(inputFile)
+        compile()
     }
     class JackTokenizer{
         ifs
@@ -44,6 +44,7 @@ classDiagram
         tokenizer
 
         CompilationEngine(inputFile)
+        compile()
         compileClass()
         compileClassVarDec()
         compileSubroutine()
@@ -58,11 +59,12 @@ classDiagram
         compileExpression()
         compileTerm()
         compileExpressionList()
-        compileTerminal()
-        compileSubroutineBody()
-        compileStatement()
-        compileSubroutineCall()
+        compileKeyword()
+        compileSymbol()
+        compileIdentifier()
+        compileType()
         isType()
         isOp()
         isUnaryOp()
+        isStatement()
     }

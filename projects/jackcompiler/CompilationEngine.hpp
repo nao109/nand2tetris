@@ -29,10 +29,11 @@ class CompilationEngine {
     void compileTerm();
     void compileExpressionList();
 
-    void compileTerminal();
-    void compileSubroutineBody();
-    void compileStatement();
-    void compileSubroutineCall();
+    void compileKeyword();
+    void compileSymbol();
+    void compileIdentifier();
+
+    void compileType();
 
     bool isType();
     bool isOp();
