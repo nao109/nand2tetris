@@ -25,7 +25,10 @@ void CompilationEngine::compileClass(){
     // 'class'
     compileKeyword();
     // className
-    compileIdentifier();
+    if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+        className = tokenizer.identifier();
+    }
+    compileClassName();
     // '{'
     compileSymbol();
     // classVarDec*
@@ -45,21 +48,24 @@ void CompilationEngine::compileClass(){
 }
 
 void CompilationEngine::compileClassVarDec(){
+    Kind kind;
+    std::string type;
+
     // classVarDec
     ofs << "<classVarDec>\n";
 
     // ('static' | 'field')
-    compileKeyword();
+    kind = compileKind();
     // type
-    compileType();
+    type = compileType();
     // varName
-    compileIdentifier();
+    compileDec(type, kind);
     // (',' varName)*
     while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
         // ','
         compileSymbol();
         // varName
-        compileIdentifier();
+        compileDec(type, kind);
     }
     // ';'
     compileSymbol();
@@ -68,10 +74,15 @@ void CompilationEngine::compileClassVarDec(){
 }
 
 void CompilationEngine::compileSubroutine(){
+    symbolTable.startSubroutine();
+
     // subroutineDec
     ofs << "<subroutineDec>\n";
 
     // ('constructor' | 'function' | 'method')
+    if(tokenizer.tokenType() == TokenType::KEYWORD && tokenizer.keyword() == "method"){
+        symbolTable.define("this", className, Kind::ARG);
+    }
     compileKeyword();
     // ('void' | type)
     if(tokenizer.tokenType() == TokenType::KEYWORD && tokenizer.keyword() == "void"){
@@ -81,7 +92,7 @@ void CompilationEngine::compileSubroutine(){
         compileType();
     }
     // subroutineName
-    compileIdentifier();
+    compileSubroutineName();
     // '('
     compileSymbol();
     // parameterList
@@ -109,22 +120,24 @@ void CompilationEngine::compileSubroutine(){
 }
 
 void CompilationEngine::compileParameterList(){
+    std::string type;
+
     ofs << "<parameterList>\n";
 
     // ((type varName) (',' type varName)*)?
     if(isType()){
         // type
-        compileType();
+        type = compileType();
         // varName
-        compileIdentifier();
+        compileDec(type, Kind::ARG);
         // (',' type varName)*
         while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
             // ','
             compileSymbol();
             // type
-            compileType();
+            type = compileType();
             // varName
-            compileIdentifier();
+            compileDec(type, Kind::ARG);
         }
     }
 
@@ -132,20 +145,22 @@ void CompilationEngine::compileParameterList(){
 }
 
 void CompilationEngine::compileVarDec(){
+    std::string type;
+
     ofs << "<varDec>\n";
 
     // 'var'
     compileKeyword();
     // type
-    compileType();
+    type = compileType();
     // varName
-    compileIdentifier();
+    compileDec(type, Kind::VAR);
     // (',' varName)*
     while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
         // ','
         compileSymbol();
         // varName
-        compileIdentifier();
+        compileDec(type, Kind::VAR);
     }
     // ';'
     compileSymbol();
@@ -271,14 +286,17 @@ void CompilationEngine::compileDo(){
     compileKeyword();
     // subroutineCall
     // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
-    if(tokenizer.peekTokenType() == TokenType::SYMBOL || tokenizer.peekSymbol() == '.'){
+    if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '.'){
         // (className | varName)
-        compileIdentifier();
+        if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+            if(symbolTable.kindOf(tokenizer.identifier()) == Kind::NONE) compileClassName();
+            else compileIdentifier();
+        }
         // '.'
         compileSymbol();
     }
     // subroutineName
-    compileIdentifier();
+    compileSubroutineName();
     // '('
     compileSymbol();
     // expressionList
@@ -358,14 +376,17 @@ void CompilationEngine::compileTerm(){
         }
         else if(tokenizer.peekTokenType() == TokenType::SYMBOL && (tokenizer.peekSymbol() == '(' || tokenizer.peekSymbol() == '.')){
             // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
-            if(tokenizer.peekTokenType() == TokenType::SYMBOL || tokenizer.peekSymbol() == '.'){
+            if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '.'){
                 // (className | varName)
-                compileIdentifier();
+                if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+                    if(symbolTable.kindOf(tokenizer.identifier()) == Kind::NONE) compileClassName();
+                    else compileIdentifier();
+                }
                 // '.'
                 compileSymbol();
             }
             // subroutineName
-            compileIdentifier();
+            compileSubroutineName();
             // '('
             compileSymbol();
             // expressionList
@@ -432,23 +453,94 @@ void CompilationEngine::compileSymbol(){
     }
 }
 
-void CompilationEngine::compileIdentifier(){
+std::string CompilationEngine::compileIdentifier(){
     if(tokenizer.tokenType() == TokenType::IDENTIFIER){
         std::string idVal = tokenizer.identifier();
-        ofs << "<identifier> " << idVal << " </identifier>\n";
+        Kind kind = symbolTable.kindOf(idVal);
+        int index = symbolTable.indexOf(idVal);
+        ofs << "<identifier>\n";
+        ofs << "<value> " << idVal << " <value>\n";
+        ofs << "<category> " << kind2string(kind) << " <category>\n";
+        ofs << "<defined> used <defined>\n";
+        ofs << "<kind> " << kind2string(kind) << " </kind>\n";
+        ofs << "<index> " << index << " </index>\n";
+        ofs << "</identifier>\n";
+        if(tokenizer.hasMoreTokens()) tokenizer.advance();
+        return idVal;
+    }
+    return std::string();
+}
+
+void CompilationEngine::compileClassName(){
+    if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+        std::string idVal = tokenizer.identifier();
+        ofs << "<identifier>\n";
+        ofs << "<value> " << idVal << " <value>\n";
+        ofs << "<category> class <category>\n";
+        ofs << "</identifier>\n";
         if(tokenizer.hasMoreTokens()) tokenizer.advance();
     }
 }
 
-void CompilationEngine::compileType(){
+void CompilationEngine::compileSubroutineName(){
+    if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+        std::string idVal = tokenizer.identifier();
+        ofs << "<identifier>\n";
+        ofs << "<value> " << idVal << " <value>\n";
+        ofs << "<category> subroutine <category>\n";
+        ofs << "</identifier>\n";
+        if(tokenizer.hasMoreTokens()) tokenizer.advance();
+    }
+}
+
+void CompilationEngine::compileDec(std::string type, Kind kind){
+    // varName
+    if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+        std::string varName = tokenizer.identifier();
+        ofs << "<identifier>\n";
+        ofs << "<value> " << varName << " <value>\n";
+        ofs << "<category> " << kind2string(kind) << " </category>\n";
+        ofs << "<defined> defined <defined>\n";
+        if(kind != Kind::NONE){
+            ofs << "<kind> " << kind2string(kind) << " </kind>\n";
+            ofs << "<index> " << symbolTable.varCount(kind) << " </index>\n";
+        }
+        ofs << "</identifier>\n";
+        symbolTable.define(varName, type, kind);
+        if(tokenizer.hasMoreTokens()) tokenizer.advance();
+    }
+}
+
+std::string CompilationEngine::compileType(){
     if(isType()){
+        std::string type;
+
         if(tokenizer.tokenType() == TokenType::KEYWORD){
+            type = tokenizer.keyword();
             compileKeyword();
+            return type;
         }
         if(tokenizer.tokenType() == TokenType::IDENTIFIER){
-            compileIdentifier();
+            type = tokenizer.identifier();
+            compileClassName();
+            return type;
         }
     }
+    return std::string();
+}
+
+Kind CompilationEngine::compileKind(){
+    if(tokenizer.tokenType() == TokenType::KEYWORD){
+        if(tokenizer.keyword() == "static"){
+            compileKeyword();
+            return Kind::STATIC;
+        }
+        if(tokenizer.keyword() == "field"){
+            compileKeyword();
+            return Kind::FIELD;
+        }
+    }
+    return Kind::NONE;
 }
 
 std::set<std::string> type = {"int", "char", "boolean"};

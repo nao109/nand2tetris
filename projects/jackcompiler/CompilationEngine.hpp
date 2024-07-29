@@ -9,10 +9,13 @@
 
 #include "Utils.hpp"
 #include "JackTokenizer.hpp"
+#include "SymbolTable.hpp"
 
 class CompilationEngine {
     std::ofstream ofs;
     JackTokenizer tokenizer;
+    SymbolTable symbolTable;
+    std::string className;
 
     void compileClass();
     void compileClassVarDec();
@@ -31,9 +34,15 @@ class CompilationEngine {
 
     void compileKeyword();
     void compileSymbol();
-    void compileIdentifier();
+    std::string compileIdentifier();
 
-    void compileType();
+    void compileClassName();
+    void compileSubroutineName();
+
+    void compileDec(std::string type, Kind kind);
+
+    std::string compileType();
+    Kind compileKind();
 
     bool isType();
     bool isOp();

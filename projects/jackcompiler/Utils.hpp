@@ -15,4 +15,7 @@ struct Token {
     std::optional<std::string> stringVal;
 };
 
+enum class Kind { STATIC, FIELD, ARG, VAR, NONE };
+std::string kind2string(Kind kind);
+
 #endif  // UTILS_H_

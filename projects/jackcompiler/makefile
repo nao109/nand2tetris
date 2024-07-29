@@ -5,8 +5,8 @@ LIBDIR  = -L/opt/boost/gcc/lib
 
 FILE = ArrayTest
 
-./JackCompiler: main.cpp JackCompiler.cpp JackTokenizer.cpp CompilationEngine.cpp JackCompiler.hpp JackTokenizer.hpp CompilationEngine.hpp Utils.hpp
-	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o JackCompiler main.cpp JackCompiler.cpp JackTokenizer.cpp CompilationEngine.cpp
+./JackCompiler: main.cpp JackCompiler.cpp JackTokenizer.cpp CompilationEngine.cpp SymbolTable.cpp Utils.cpp JackCompiler.hpp JackTokenizer.hpp CompilationEngine.hpp SymbolTable.hpp Utils.hpp
+	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o JackCompiler main.cpp JackCompiler.cpp JackTokenizer.cpp CompilationEngine.cpp SymbolTable.cpp Utils.cpp
 
 .PHONY: test
 test: ./JackCompiler $(FILE)

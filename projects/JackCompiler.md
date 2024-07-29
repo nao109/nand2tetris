@@ -5,6 +5,7 @@ title: JackCompiler
 classDiagram
     JackCompiler o-- CompilationEngine
     CompilationEngine o-- JackTokenizer
+    CompilationEngine o-- SymbolTable
     class JackCompiler{
         inputFile
 
@@ -42,6 +43,8 @@ classDiagram
     class CompilationEngine{
         ofs
         tokenizer
+        symbolTable
+        className
 
         CompilationEngine(inputFile)
         compile()
@@ -62,9 +65,24 @@ classDiagram
         compileKeyword()
         compileSymbol()
         compileIdentifier()
+        compileDec()
         compileType()
+        compileKind()
         isType()
         isOp()
         isUnaryOp()
         isStatement()
+    }
+    class SymbolTable {
+        symboltable
+        kindTable
+        typeTable
+
+        SymbolTable()
+        startSubroutine()
+        define()
+        varCount()
+        kindOf()
+        typeOf()
+        indexOf()
     }
