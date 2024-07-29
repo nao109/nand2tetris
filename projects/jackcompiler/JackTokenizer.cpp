@@ -23,7 +23,7 @@ JackTokenizer::JackTokenizer(std::filesystem::path inputFile) {
 }
 
 bool JackTokenizer::hasMoreTokens(){
-    return id < tokens.size();
+    return id + 1 < tokens.size();
 }
 
 void JackTokenizer::advance(){
