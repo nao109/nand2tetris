@@ -25,10 +25,7 @@ void CompilationEngine::compileClass(){
     // 'class'
     compileKeyword();
     // className
-    if(tokenizer.tokenType() == TokenType::IDENTIFIER){
-        className = tokenizer.identifier();
-    }
-    compileClassName();
+    this->className = compileClassName();
     // '{'
     compileSymbol();
     // classVarDec*
@@ -92,7 +89,7 @@ void CompilationEngine::compileSubroutine(){
         compileType();
     }
     // subroutineName
-    compileSubroutineName();
+    this->subroutineName = compileSubroutineName();
     // '('
     compileSymbol();
     // parameterList
@@ -471,7 +468,7 @@ std::string CompilationEngine::compileIdentifier(){
     return std::string();
 }
 
-void CompilationEngine::compileClassName(){
+std::string CompilationEngine::compileClassName(){
     if(tokenizer.tokenType() == TokenType::IDENTIFIER){
         std::string idVal = tokenizer.identifier();
         ofs << "<identifier>\n";
@@ -479,10 +476,12 @@ void CompilationEngine::compileClassName(){
         ofs << "<category> class <category>\n";
         ofs << "</identifier>\n";
         if(tokenizer.hasMoreTokens()) tokenizer.advance();
+        return idVal;
     }
+    return std::string();
 }
 
-void CompilationEngine::compileSubroutineName(){
+std::string CompilationEngine::compileSubroutineName(){
     if(tokenizer.tokenType() == TokenType::IDENTIFIER){
         std::string idVal = tokenizer.identifier();
         ofs << "<identifier>\n";
@@ -490,7 +489,9 @@ void CompilationEngine::compileSubroutineName(){
         ofs << "<category> subroutine <category>\n";
         ofs << "</identifier>\n";
         if(tokenizer.hasMoreTokens()) tokenizer.advance();
+        return idVal;
     }
+    return std::string();
 }
 
 void CompilationEngine::compileDec(std::string type, Kind kind){

@@ -16,6 +16,7 @@ class CompilationEngine {
     JackTokenizer tokenizer;
     SymbolTable symbolTable;
     std::string className;
+    std::string subroutineName;
 
     void compileClass();
     void compileClassVarDec();
@@ -36,8 +37,8 @@ class CompilationEngine {
     void compileSymbol();
     std::string compileIdentifier();
 
-    void compileClassName();
-    void compileSubroutineName();
+    std::string compileClassName();
+    std::string compileSubroutineName();
 
     void compileDec(std::string type, Kind kind);
 
