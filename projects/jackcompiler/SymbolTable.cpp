@@ -17,8 +17,8 @@ void SymbolTable::startSubroutine(){
 }
 
 void SymbolTable::define(std::string name, std::string type, Kind kind){
-    symbolTable[kind].insert(name);
     kindTable[name] = std::make_pair(kind, varCount(kind));
+    symbolTable[kind].insert(name);
     typeTable[name] = type;
 }
 

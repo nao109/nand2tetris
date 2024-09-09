@@ -33,6 +33,8 @@ class CompilationEngine {
     void compileTerm();
     void compileExpressionList();
 
+    void compileSubroutineCall();
+
     void compileKeyword();
     void compileSymbol();
     std::string compileIdentifier();

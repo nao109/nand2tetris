@@ -282,24 +282,7 @@ void CompilationEngine::compileDo(){
     // 'do'
     compileKeyword();
     // subroutineCall
-    // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
-    if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '.'){
-        // (className | varName)
-        if(tokenizer.tokenType() == TokenType::IDENTIFIER){
-            if(symbolTable.kindOf(tokenizer.identifier()) == Kind::NONE) compileClassName();
-            else compileIdentifier();
-        }
-        // '.'
-        compileSymbol();
-    }
-    // subroutineName
-    compileSubroutineName();
-    // '('
-    compileSymbol();
-    // expressionList
-    compileExpressionList();
-    // ')'
-    compileSymbol();
+    compileSubroutineCall();
     // ';'
     compileSymbol();
 
@@ -372,24 +355,8 @@ void CompilationEngine::compileTerm(){
             compileSymbol();
         }
         else if(tokenizer.peekTokenType() == TokenType::SYMBOL && (tokenizer.peekSymbol() == '(' || tokenizer.peekSymbol() == '.')){
-            // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
-            if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '.'){
-                // (className | varName)
-                if(tokenizer.tokenType() == TokenType::IDENTIFIER){
-                    if(symbolTable.kindOf(tokenizer.identifier()) == Kind::NONE) compileClassName();
-                    else compileIdentifier();
-                }
-                // '.'
-                compileSymbol();
-            }
-            // subroutineName
-            compileSubroutineName();
-            // '('
-            compileSymbol();
-            // expressionList
-            compileExpressionList();
-            // ')'
-            compileSymbol();
+            // subroutineCall
+            compileSubroutineCall();
         }
         else{
             // varName
@@ -431,6 +398,28 @@ void CompilationEngine::compileExpressionList(){
     }
 
     ofs << "</expressionList>\n";
+}
+
+void CompilationEngine::compileSubroutineCall(){
+    // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
+    std::string idVal = this->className;
+    if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '.'){
+        // (className | varName)
+        if(tokenizer.tokenType() == TokenType::IDENTIFIER){
+            if(symbolTable.kindOf(tokenizer.identifier()) == Kind::NONE) idVal = compileClassName();
+            else idVal = compileIdentifier();
+        }
+        // '.'
+        compileSymbol();
+    }
+    // subroutineName
+    compileSubroutineName();
+    // '('
+    compileSymbol();
+    // expressionList
+    compileExpressionList();
+    // ')'
+    compileSymbol();
 }
 
 void CompilationEngine::compileKeyword(){
