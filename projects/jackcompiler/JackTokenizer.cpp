@@ -38,7 +38,7 @@ std::string JackTokenizer::keyword(){
     return tokens[id].keyword.value();
 }
 
-char JackTokenizer::symbol(){
+std::string JackTokenizer::symbol(){
     return tokens[id].symbol.value();
 }
 
@@ -58,7 +58,7 @@ TokenType JackTokenizer::peekTokenType(){
     return tokens[id + 1].tokenType;
 }
 
-char JackTokenizer::peekSymbol(){
+std::string JackTokenizer::peekSymbol(){
     return tokens[id + 1].symbol.value();
 }
 
@@ -81,9 +81,9 @@ void JackTokenizer::printTokens(std::filesystem::path inputFile){
                 break;
             case TokenType::SYMBOL:
                 if(!token.symbol.has_value()) std::cerr << static_cast<int>(token.tokenType) << " " << "2\n";
-                if(token.symbol.value() == '<') ofsT << "<symbol> &lt; </symbol>\n";
-                else if(token.symbol.value() == '>') ofsT << "<symbol> &gt; </symbol>\n";
-                else if(token.symbol.value() == '&') ofsT << "<symbol> &amp; </symbol>\n";
+                if(token.symbol.value() == "<") ofsT << "<symbol> &lt; </symbol>\n";
+                else if(token.symbol.value() == ">") ofsT << "<symbol> &gt; </symbol>\n";
+                else if(token.symbol.value() == "&") ofsT << "<symbol> &amp; </symbol>\n";
                 else ofsT << "<symbol> " << token.symbol.value() << " </symbol>\n";
                 break;
             case TokenType::IDENTIFIER:
@@ -167,7 +167,7 @@ void JackTokenizer::addKeywordToken(std::string tokenVal){
 }
 
 void JackTokenizer::addSymbolToken(std::string tokenVal){
-    tokens.push_back({TokenType::SYMBOL, std::nullopt, tokenVal.front(), std::nullopt, std::nullopt, std::nullopt});
+    tokens.push_back({TokenType::SYMBOL, std::nullopt, tokenVal, std::nullopt, std::nullopt, std::nullopt});
 }
 
 void JackTokenizer::addIdentifierToken(std::string tokenVal){

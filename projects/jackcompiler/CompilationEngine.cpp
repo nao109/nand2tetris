@@ -58,7 +58,7 @@ void CompilationEngine::compileClassVarDec(){
     // varName
     compileDec(type, kind);
     // (',' varName)*
-    while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
+    while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ","){
         // ','
         compileSymbol();
         // varName
@@ -128,7 +128,7 @@ void CompilationEngine::compileParameterList(){
         // varName
         compileDec(type, Kind::ARG);
         // (',' type varName)*
-        while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
+        while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ","){
             // ','
             compileSymbol();
             // type
@@ -153,7 +153,7 @@ void CompilationEngine::compileVarDec(){
     // varName
     compileDec(type, Kind::VAR);
     // (',' varName)*
-    while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
+    while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ","){
         // ','
         compileSymbol();
         // varName
@@ -205,7 +205,7 @@ void CompilationEngine::compileLet(){
     // varName
     compileIdentifier();
     // ('[' expression ']')?
-    if(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == '['){
+    if(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == "["){
         // '['
         compileSymbol();
         // expression
@@ -295,7 +295,7 @@ void CompilationEngine::compileReturn(){
     // 'return'
     compileKeyword();
     // expression?
-    if(tokenizer.tokenType() != TokenType::SYMBOL || tokenizer.symbol() != ';'){
+    if(tokenizer.tokenType() != TokenType::SYMBOL || tokenizer.symbol() != ";"){
         compileExpression();
     }
     // ';'
@@ -344,7 +344,7 @@ void CompilationEngine::compileTerm(){
     }
     else if(tokenizer.tokenType() == TokenType::IDENTIFIER){
         // varName | varName '[' expression ']' | subroutineCall
-        if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '['){
+        if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == "["){
             // varName
             compileIdentifier();
             // '['
@@ -354,7 +354,7 @@ void CompilationEngine::compileTerm(){
             // ']'
             compileSymbol();
         }
-        else if(tokenizer.peekTokenType() == TokenType::SYMBOL && (tokenizer.peekSymbol() == '(' || tokenizer.peekSymbol() == '.')){
+        else if(tokenizer.peekTokenType() == TokenType::SYMBOL && (tokenizer.peekSymbol() == "(" || tokenizer.peekSymbol() == ".")){
             // subroutineCall
             compileSubroutineCall();
         }
@@ -363,7 +363,7 @@ void CompilationEngine::compileTerm(){
             compileIdentifier();
         }
     }
-    else if(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == '('){
+    else if(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == "("){
         // '('
         compileSymbol();
         // expression
@@ -371,7 +371,7 @@ void CompilationEngine::compileTerm(){
         // ')'
         compileSymbol();
     }
-    else if(tokenizer.tokenType() == TokenType::SYMBOL && isUnaryOp()){
+    else if(isUnaryOp()){
         // unaryOp
         compileSymbol();
         // term
@@ -385,11 +385,11 @@ void CompilationEngine::compileExpressionList(){
     ofs << "<expressionList>\n";
 
     // (expression (',' expression)*)?
-    if(tokenizer.tokenType() != TokenType::SYMBOL || (tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == '(') || isUnaryOp()){
+    if(tokenizer.tokenType() != TokenType::SYMBOL || (tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == "(") || isUnaryOp()){
         // expression
         compileExpression();
         // (',' expression)*
-        while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ','){
+        while(tokenizer.tokenType() == TokenType::SYMBOL && tokenizer.symbol() == ","){
             // ','
             compileSymbol();
             // expression
@@ -403,7 +403,7 @@ void CompilationEngine::compileExpressionList(){
 void CompilationEngine::compileSubroutineCall(){
     // subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
     std::string idVal = this->className;
-    if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == '.'){
+    if(tokenizer.peekTokenType() == TokenType::SYMBOL && tokenizer.peekSymbol() == "."){
         // (className | varName)
         if(tokenizer.tokenType() == TokenType::IDENTIFIER){
             if(symbolTable.kindOf(tokenizer.identifier()) == Kind::NONE) idVal = compileClassName();
@@ -431,9 +431,9 @@ void CompilationEngine::compileKeyword(){
 
 void CompilationEngine::compileSymbol(){
     if(tokenizer.tokenType() == TokenType::SYMBOL){
-        if(tokenizer.symbol() == '<') ofs << "<symbol> &lt; </symbol>\n";
-        else if(tokenizer.symbol() == '>') ofs << "<symbol> &gt; </symbol>\n";
-        else if(tokenizer.symbol() == '&') ofs << "<symbol> &amp; </symbol>\n";
+        if(tokenizer.symbol() == "<") ofs << "<symbol> &lt; </symbol>\n";
+        else if(tokenizer.symbol() == ">") ofs << "<symbol> &gt; </symbol>\n";
+        else if(tokenizer.symbol() == "&") ofs << "<symbol> &amp; </symbol>\n";
         else ofs << "<symbol> " << tokenizer.symbol() << " </symbol>\n";
         if(tokenizer.hasMoreTokens()) tokenizer.advance();
     }
@@ -544,12 +544,12 @@ bool CompilationEngine::isType(){
     return false;
 }
 
-std::set<char> ops = {'+', '-', '*', '/', '&', '|', '<', '>', '='};
+std::set<std::string> ops = {"+", "-", "*", "/", "&", "|", "<", ">", "="};
 bool CompilationEngine::isOp(){
     return (tokenizer.tokenType() == TokenType::SYMBOL && ops.count(tokenizer.symbol()));
 }
 
-std::set<char> unaryOps = {'-', '~'};
+std::set<std::string> unaryOps = {"-", "~"};
 bool CompilationEngine::isUnaryOp(){
     return (tokenizer.tokenType() == TokenType::SYMBOL && unaryOps.count(tokenizer.symbol()));
 }
