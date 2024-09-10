@@ -18,4 +18,9 @@ struct Token {
 enum class Kind { STATIC, FIELD, ARG, VAR, NONE };
 std::string kind2string(Kind kind);
 
+enum class Segment { CONST, ARG, LOCAL, STATIC, THIS, THAT, POINTER, TEMP };
+enum class Command { NONE, ADD, SUB, NEG, EQ, GT, LT, AND, OR, NOT };
+Command op2command(std::string command);
+Command unaryop2command(std::string unaryOp);
+
 #endif  // UTILS_H_

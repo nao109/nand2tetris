@@ -6,6 +6,7 @@ classDiagram
     JackCompiler o-- CompilationEngine
     CompilationEngine o-- JackTokenizer
     CompilationEngine o-- SymbolTable
+    CompilationEngine o-- VMWriter
     class JackCompiler{
         inputFile
 
@@ -44,8 +45,11 @@ classDiagram
         ofs
         tokenizer
         symbolTable
+        vmwriter
         className
         subroutineName
+        ifLabel
+        whileLabel
 
         CompilationEngine(inputFile)
         compile()
@@ -78,6 +82,9 @@ classDiagram
         isOp()
         isUnaryOp()
         isStatement()
+        initLabel()
+        newIfLabel()
+        newWhileLabel()
     }
     class SymbolTable {
         symboltable
@@ -91,4 +98,19 @@ classDiagram
         kindOf()
         typeOf()
         indexOf()
+    }
+    class VMWriter {
+        ofs
+
+        VMWriter()
+        writePush()
+        writePop()
+        writeArithmetic()
+        writeLabel()
+        writeGoto()
+        writeIf()
+        writeCall()
+        writeFunction()
+        writeReturn()
+        close()
     }
