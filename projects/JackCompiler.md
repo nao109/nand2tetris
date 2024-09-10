@@ -45,6 +45,7 @@ classDiagram
         tokenizer
         symbolTable
         className
+        subroutineName
 
         CompilationEngine(inputFile)
         compile()
@@ -68,9 +69,11 @@ classDiagram
         compileIdentifier()
         compileClassName()
         compileSubroutineName()
-        compileDec()
+        compileDec(type, kind)
         compileType()
         compileKind()
+        consumeType(tokenType)
+        consume(tokenType, str)
         isType()
         isOp()
         isUnaryOp()

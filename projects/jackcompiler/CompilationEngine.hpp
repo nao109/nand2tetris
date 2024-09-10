@@ -35,8 +35,8 @@ class CompilationEngine {
 
     void compileSubroutineCall();
 
-    void compileKeyword();
-    void compileSymbol();
+    std::string compileKeyword();
+    std::string compileSymbol();
     std::string compileIdentifier();
 
     std::string compileClassName();
@@ -46,6 +46,9 @@ class CompilationEngine {
 
     std::string compileType();
     Kind compileKind();
+
+    bool consumeType(TokenType tokenType);
+    bool consume(TokenType tokenType, std::string str);
 
     bool isType();
     bool isOp();
