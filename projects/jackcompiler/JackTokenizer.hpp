@@ -36,13 +36,13 @@ public:
 
     TokenType tokenType();
     std::string keyword();
-    char symbol();
+    std::string symbol();
     std::string identifier();
     int intVal();
     std::string stringVal();
 
     TokenType peekTokenType();
-    char peekSymbol();
+    std::string peekSymbol();
 };
 
 #endif  // JACKTOKENIZER_H_

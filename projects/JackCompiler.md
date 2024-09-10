@@ -3,14 +3,16 @@
 title: JackCompiler
 ---
 classDiagram
-    JackAnalyzer o-- CompilationEngine
+    JackCompiler o-- CompilationEngine
     CompilationEngine o-- JackTokenizer
-    class JackAnalyzer{
+    CompilationEngine o-- SymbolTable
+    CompilationEngine o-- VMWriter
+    class JackCompiler{
         inputFile
 
-        JackAnalyzer(inputFile)
-        analyzeFile(inputFile)
-        analyze()
+        JackCompiler(inputFile)
+        compileFile(inputFile)
+        compile()
     }
     class JackTokenizer{
         ifs
@@ -42,8 +44,15 @@ classDiagram
     class CompilationEngine{
         ofs
         tokenizer
+        symbolTable
+        vmwriter
+        className
+        subroutineName
+        ifLabel
+        whileLabel
 
         CompilationEngine(inputFile)
+        compile()
         compileClass()
         compileClassVarDec()
         compileSubroutine()
@@ -58,11 +67,50 @@ classDiagram
         compileExpression()
         compileTerm()
         compileExpressionList()
-        compileTerminal()
-        compileSubroutineBody()
-        compileStatement()
         compileSubroutineCall()
+        compileKeyword()
+        compileSymbol()
+        compileIdentifier()
+        compileClassName()
+        compileSubroutineName()
+        compileDec(type, kind)
+        compileType()
+        compileKind()
+        consumeType(tokenType)
+        consume(tokenType, str)
         isType()
         isOp()
         isUnaryOp()
+        isStatement()
+        initLabel()
+        newIfLabel()
+        newWhileLabel()
+    }
+    class SymbolTable {
+        symboltable
+        kindTable
+        typeTable
+
+        SymbolTable()
+        startSubroutine()
+        define()
+        varCount()
+        kindOf()
+        typeOf()
+        indexOf()
+    }
+    class VMWriter {
+        ofs
+
+        VMWriter()
+        writePush()
+        writePop()
+        writeArithmetic()
+        writeLabel()
+        writeGoto()
+        writeIf()
+        writeCall()
+        writeFunction()
+        writeReturn()
+        close()
     }

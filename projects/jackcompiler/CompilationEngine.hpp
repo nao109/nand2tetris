@@ -9,10 +9,18 @@
 
 #include "Utils.hpp"
 #include "JackTokenizer.hpp"
+#include "SymbolTable.hpp"
+#include "VMWriter.hpp"
 
 class CompilationEngine {
     std::ofstream ofs;
     JackTokenizer tokenizer;
+    SymbolTable symbolTable;
+    VMWriter vmwriter;
+    std::string className;
+    std::string subroutineName;
+    int ifLabel;
+    int whileLabel;
 
     void compileClass();
     void compileClassVarDec();
@@ -27,17 +35,33 @@ class CompilationEngine {
     void compileIf();
     void compileExpression();
     void compileTerm();
-    void compileExpressionList();
+    int compileExpressionList();
 
-    void compileTerminal();
-    void compileSubroutineBody();
-    void compileStatement();
     void compileSubroutineCall();
+
+    std::string compileKeyword();
+    std::string compileSymbol();
+    std::string compileIdentifier();
+
+    std::string compileClassName();
+    std::string compileSubroutineName();
+
+    void compileDec(std::string type, Kind kind);
+
+    std::string compileType();
+    Kind compileKind();
+
+    bool consumeType(TokenType tokenType);
+    bool consume(TokenType tokenType, std::string str);
 
     bool isType();
     bool isOp();
     bool isUnaryOp();
     bool isStatement();
+
+    void initLabel();
+    std::string newIfLabel();
+    std::string newWhileLabel();
 
 public:
     CompilationEngine(std::filesystem::path inputFile);

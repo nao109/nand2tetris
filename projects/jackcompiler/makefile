@@ -3,11 +3,11 @@ CXXFLAGS  = -std=gnu++17 -Wall -Wextra -fsanitize=undefined -O2 -DONLINE_JUDGE -
 INCDIR  = -I/opt/boost/gcc/include -I/opt/ac-library
 LIBDIR  = -L/opt/boost/gcc/lib
 
-FILE = ArrayTest
+FILE = Pong
 
-./JackAnalyzer: main.cpp JackAnalyzer.cpp JackTokenizer.cpp CompilationEngine.cpp JackAnalyzer.hpp JackTokenizer.hpp CompilationEngine.hpp Utils.hpp
-	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o JackAnalyzer main.cpp JackAnalyzer.cpp JackTokenizer.cpp CompilationEngine.cpp
+./JackCompiler: main.cpp JackCompiler.cpp JackTokenizer.cpp CompilationEngine.cpp SymbolTable.cpp VMWriter.cpp Utils.cpp JackCompiler.hpp JackTokenizer.hpp CompilationEngine.hpp SymbolTable.hpp VMWriter.hpp Utils.hpp
+	$(CXX) $(CXXFLAGS) $(INCDIR) $(LIBDIR) -o JackCompiler main.cpp JackCompiler.cpp JackTokenizer.cpp CompilationEngine.cpp SymbolTable.cpp VMWriter.cpp Utils.cpp
 
 .PHONY: test
-test: ./JackAnalyzer $(FILE)
-	./JackAnalyzer $(FILE)
+test: ./JackCompiler $(FILE)
+	./JackCompiler $(FILE)
