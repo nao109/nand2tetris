@@ -114,18 +114,15 @@ void JackTokenizer::removeSomeLinesComments(){
 }
 
 void JackTokenizer::tokenize(){
-    bool isStringConst = false;
     char c;
     while(ifs.get(c)){
-        if(isStringConst){
-            if(c == '"'){
-                isStringConst = false;
-                if(!isStringConst){
-                    addStringConstToken(tokenVal);
-                    tokenVal.clear();
-                }
+        if(c == '"') {
+            while(ifs.peek() != '"'){
+                ifs.get(c);
+                tokenVal.push_back(c);
             }
-            else tokenVal.push_back(c);
+            ifs.get(c);
+            addStringConstToken(tokenVal);
         }
         else if(isspace(c)) continue;
         else if(c == '/'){
@@ -134,31 +131,30 @@ void JackTokenizer::tokenize(){
             else{
                 tokenVal.push_back(c);
                 addSymbolToken(tokenVal);
-                tokenVal.clear();
             }
         }
         else if(symbols.count(c)){
             tokenVal.push_back(c);
             addSymbolToken(tokenVal);
-            tokenVal.clear();
         }
         else if(isdigit(c)){
             tokenVal.push_back(c);
-            if(!isdigit(ifs.peek())){
-                addIntConstToken(tokenVal);
-                tokenVal.clear();
+            while(isdigit(ifs.peek())){
+                ifs.get(c);
+                tokenVal.push_back(c);
             }
+            addIntConstToken(tokenVal);
         }
-        else if(c == '"') isStringConst = true;
-        else{
+        else if(isalpha(c) || c == '_'){
             tokenVal.push_back(c);
-
-            if(isalnum(ifs.peek()) || ifs.peek() == '_') continue;
-
-            else if(keywords.count(tokenVal)) addKeywordToken(tokenVal);
+            while(isalnum(ifs.peek()) || ifs.peek() == '_'){
+                ifs.get(c);
+                tokenVal.push_back(c);
+            }
+            if(keywords.count(tokenVal)) addKeywordToken(tokenVal);
             else addIdentifierToken(tokenVal);
-            tokenVal.clear();
         }
+        tokenVal.clear();
     }
 }
 
