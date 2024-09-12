@@ -1,0 +1,169 @@
+<class>
+<keyword> class </keyword>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<symbol> { </symbol>
+<subroutineDec>
+<keyword> function </keyword>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<identifier>
+<value> new <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> size <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<ifStatement>
+<keyword> if </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ~ </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> &gt; </symbol>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> error <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+</statements>
+<symbol> } </symbol>
+</ifStatement>
+<returnStatement>
+<keyword> return </keyword>
+<expression>
+<term>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> alloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> method </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> dispose <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> deAlloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<keyword> this </keyword>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<symbol> } </symbol>
+</class>
