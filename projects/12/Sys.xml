@@ -1,0 +1,521 @@
+<class>
+<keyword> class </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> { </symbol>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> init <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> init <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Math <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> init <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Screen <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> init <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Output <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> init <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Keyboard <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> init <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> main <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> halt <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> halt <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<whileStatement>
+<keyword> while </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<keyword> true </keyword>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+</statements>
+<symbol> } </symbol>
+</whileStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> wait <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> duration <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<varDec>
+<keyword> var </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> i <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> , </symbol>
+<identifier>
+<value> j <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<statements>
+<ifStatement>
+<keyword> if </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> duration <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> &lt; </symbol>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> error <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+</statements>
+<symbol> } </symbol>
+</ifStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> i <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> duration <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<whileStatement>
+<keyword> while </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> i <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> &gt; </symbol>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> j <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 50 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<whileStatement>
+<keyword> while </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> j <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+<symbol> &gt; </symbol>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> j <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> j <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+</statements>
+<symbol> } </symbol>
+</whileStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> i <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> i <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+</statements>
+<symbol> } </symbol>
+</whileStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> error <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> errorCode <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Output <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> printString <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<stringConstant> ERR </stringConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Output <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> printString <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> errorCode <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> halt <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<symbol> } </symbol>
+</class>
