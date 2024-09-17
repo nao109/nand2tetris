@@ -472,7 +472,7 @@
 </identifier>
 <symbol> . </symbol>
 <identifier>
-<value> printString <value>
+<value> printInt <value>
 <category> subroutine <category>
 </identifier>
 <symbol> ( </symbol>

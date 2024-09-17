@@ -167,7 +167,7 @@
 <keyword> do </keyword>
 <identifier> Output </identifier>
 <symbol> . </symbol>
-<identifier> printString </identifier>
+<identifier> printInt </identifier>
 <symbol> ( </symbol>
 <identifier> errorCode </identifier>
 <symbol> ) </symbol>

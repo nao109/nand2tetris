@@ -49,7 +49,7 @@ class Sys {
      *  and halts the program's execution. */
     function void error(int errorCode) {
         do Output.printString("ERR");
-        do Output.printString(errorCode);
+        do Output.printInt(errorCode);
         do Sys.halt();
         return;
     }
