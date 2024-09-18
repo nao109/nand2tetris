@@ -1,0 +1,1036 @@
+<class>
+<keyword> class </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> { </symbol>
+<classVarDec>
+<keyword> static </keyword>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<identifier>
+<value> ram <value>
+<category> static </category>
+<defined> defined <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> ; </symbol>
+</classVarDec>
+<classVarDec>
+<keyword> static </keyword>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<identifier>
+<value> heap <value>
+<category> static </category>
+<defined> defined <defined>
+<kind> static </kind>
+<index> 1 </index>
+</identifier>
+<symbol> ; </symbol>
+</classVarDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> init <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> ram <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> heap <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 1 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 2048 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> heap <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 1 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 14334 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> heap <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 1 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 16384 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> peek <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> address <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<returnStatement>
+<keyword> return </keyword>
+<expression>
+<term>
+<identifier>
+<value> ram <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<identifier>
+<value> address <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> poke <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> address <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+<symbol> , </symbol>
+<keyword> int </keyword>
+<identifier>
+<value> value <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> ram <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<identifier>
+<value> address <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> value <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> alloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> size <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<varDec>
+<keyword> var </keyword>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<identifier>
+<value> block <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<varDec>
+<keyword> var </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> base <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> , </symbol>
+<identifier>
+<value> length <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+<symbol> , </symbol>
+<identifier>
+<value> next <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<statements>
+<ifStatement>
+<keyword> if </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ~ </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> &gt; </symbol>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> error <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 5 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+</statements>
+<symbol> } </symbol>
+</ifStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> heap <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<whileStatement>
+<keyword> while </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<keyword> true </keyword>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<ifStatement>
+<keyword> if </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+<symbol> &lt; </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+</statements>
+<symbol> } </symbol>
+<keyword> else </keyword>
+<symbol> { </symbol>
+<statements>
+<ifStatement>
+<keyword> if </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+<symbol> &lt; </symbol>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> &amp; </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+<symbol> = </symbol>
+<term>
+<integerConstant> 16384 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> error <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 6 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+</statements>
+<symbol> } </symbol>
+</ifStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> base <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> length <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> next <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> length <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+<symbol> - </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> block <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<identifier>
+<value> size <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> next <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<returnStatement>
+<keyword> return </keyword>
+<expression>
+<term>
+<identifier>
+<value> base <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</ifStatement>
+</statements>
+<symbol> } </symbol>
+</whileStatement>
+<returnStatement>
+<keyword> return </keyword>
+<expression>
+<term>
+<integerConstant> 16384 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> deAlloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<identifier>
+<value> o <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<varDec>
+<keyword> var </keyword>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<identifier>
+<value> segment <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<varDec>
+<keyword> var </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> length <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> segment <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> o <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> segment <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> segment <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+<symbol> - </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> segment <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<symbol> } </symbol>
+</class>

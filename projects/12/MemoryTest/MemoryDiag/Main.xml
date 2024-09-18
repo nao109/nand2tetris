@@ -1,0 +1,2365 @@
+<class>
+<keyword> class </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> { </symbol>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> main <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<varDec>
+<keyword> var </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> temp <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<varDec>
+<keyword> var </keyword>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<identifier>
+<value> a <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> , </symbol>
+<identifier>
+<value> b <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+<symbol> , </symbol>
+<identifier>
+<value> c <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+<symbol> , </symbol>
+<identifier>
+<value> out <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 17000 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 10 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> poke <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 333 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 11 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> temp <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> peek <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> temp <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 12 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 20 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> alloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 20 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 21 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkRange <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 20 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 22 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 30 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> alloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 4 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 31 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkRange <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 32 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkOverlap <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 33 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 40 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> c <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> alloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 500 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 5 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> c <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 41 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkRange <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> c <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 500 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 42 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkOverlap <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> c <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 500 </integerConstant>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 43 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkOverlap <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> c <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 500 </integerConstant>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 44 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 50 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> deAlloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 51 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> deAlloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 52 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 60 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> alloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 6 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 61 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkRange <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 62 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkOverlap <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<identifier>
+<value> c <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 500 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 63 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 70 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> deAlloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> c <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 3 </index>
+</identifier>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 71 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> deAlloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 72 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 70 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> alloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 8000 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 7 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 71 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkRange <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 8000 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 72 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> deAlloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 73 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> alloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 7000 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 74 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> checkRange <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 7000 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 75 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Memory <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> deAlloc <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 8 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> out <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 4 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 100 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> checkRange <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> a <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+<symbol> , </symbol>
+<keyword> int </keyword>
+<identifier>
+<value> a_len <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<varDec>
+<keyword> var </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> a_high <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> a_high <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<identifier>
+<value> a_len <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<ifStatement>
+<keyword> if </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> &lt; </symbol>
+<term>
+<integerConstant> 2048 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> | </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> a_high <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> &gt; </symbol>
+<term>
+<integerConstant> 16383 </integerConstant>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> halt <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+</statements>
+<symbol> } </symbol>
+</ifStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> checkOverlap <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> a <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+<symbol> , </symbol>
+<keyword> int </keyword>
+<identifier>
+<value> a_len <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+<symbol> , </symbol>
+<keyword> int </keyword>
+<identifier>
+<value> b <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 2 </index>
+</identifier>
+<symbol> , </symbol>
+<keyword> int </keyword>
+<identifier>
+<value> b_len <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 3 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<varDec>
+<keyword> var </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> a_high <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> , </symbol>
+<identifier>
+<value> b_high <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> a_high <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<identifier>
+<value> a_len <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> b_high <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> b <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 2 </index>
+</identifier>
+</term>
+<symbol> + </symbol>
+<term>
+<identifier>
+<value> b_len <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 3 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<ifStatement>
+<keyword> if </keyword>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ~ </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> &gt; </symbol>
+<term>
+<identifier>
+<value> b_high <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> | </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> a_high <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> &lt; </symbol>
+<term>
+<identifier>
+<value> b <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 2 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</term>
+</expression>
+<symbol> ) </symbol>
+<symbol> { </symbol>
+<statements>
+<doStatement>
+<keyword> do </keyword>
+<identifier>
+<value> Sys <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> halt <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+</expressionList>
+<symbol> ) </symbol>
+<symbol> ; </symbol>
+</doStatement>
+</statements>
+<symbol> } </symbol>
+</ifStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<symbol> } </symbol>
+</class>

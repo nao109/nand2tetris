@@ -1,0 +1,630 @@
+<class>
+<keyword> class </keyword>
+<identifier>
+<value> Main <value>
+<category> class <category>
+</identifier>
+<symbol> { </symbol>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> main <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<varDec>
+<keyword> var </keyword>
+<identifier>
+<value> Array <value>
+<category> class <category>
+</identifier>
+<identifier>
+<value> r <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 8000 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+<symbol> * </symbol>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+<symbol> * </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 30 </integerConstant>
+</term>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+<symbol> * </symbol>
+<term>
+<integerConstant> 100 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 1 </integerConstant>
+</term>
+<symbol> * </symbol>
+<term>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 2 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 4 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+</term>
+<symbol> * </symbol>
+<term>
+<integerConstant> 0 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 5 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 9 </integerConstant>
+</term>
+<symbol> / </symbol>
+<term>
+<integerConstant> 3 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 6 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 18000 </integerConstant>
+</term>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> / </symbol>
+<term>
+<integerConstant> 6 </integerConstant>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 7 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<integerConstant> 32766 </integerConstant>
+</term>
+<symbol> / </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 32767 </integerConstant>
+</term>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 8 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Math <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> sqrt <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 9 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 9 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Math <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> sqrt <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 32767 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 10 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Math <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> min <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 345 </integerConstant>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<integerConstant> 123 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 11 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Math <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> max <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 123 </integerConstant>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 345 </integerConstant>
+</term>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 12 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Math <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> abs <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<integerConstant> 27 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> r <value>
+<category> var <category>
+<defined> used <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> [ </symbol>
+<expression>
+<term>
+<integerConstant> 13 </integerConstant>
+</term>
+</expression>
+<symbol> ] </symbol>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Math <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> abs <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<symbol> - </symbol>
+<term>
+<integerConstant> 32767 </integerConstant>
+</term>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<symbol> } </symbol>
+</class>

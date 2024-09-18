@@ -1,0 +1,76 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Memory.jack
+/**
+ * This library provides two services: direct access to the computer's main
+ * memory (RAM), and allocation and recycling of memory blocks. The Hack RAM
+ * consists of 32,768 words, each holding a 16-bit binary number.
+ */ 
+class Memory {
+    static Array ram;
+    static Array heap;
+
+    /** Initializes the class. */
+    function void init() {
+        let ram = 0;
+
+        let heap = 2048;
+        let heap[0] = 14334;  // length
+        let heap[1] = 16384;  // next
+        return;
+    }
+
+    /** Returns the RAM value at the given address. */
+    function int peek(int address) {
+        return ram[address];
+    }
+
+    /** Sets the RAM value at the given address to the given value. */
+    function void poke(int address, int value) {
+        let ram[address] = value;
+        return;
+    }
+
+    /** Finds an available RAM block of the given size and returns
+     *  a reference to its base address. */
+    function int alloc(int size) {
+        var Array block;
+        var int base, length, next;
+
+        if (~(size > 0)) { do Sys.error(5); }
+
+        let block = heap;
+        while (true) {
+            if (block[0] < (size + 2)) {
+                let block = block[1];
+            }
+            else {
+                if ((block[0] < size) & (block[1] = 16384)) { do Sys.error(6); }
+
+                let base = block + 2;
+                let length = block[0];
+                let next = block[1];
+
+                let block[0] = 0;
+                let block[1] = block + (size + 2);
+                let block[size + 2] = length - (size + 2);
+                let block[size + 3] = next;
+
+                return base;
+            }
+        }
+        return 16384;
+    }
+
+    /** De-allocates the given object (cast as an array) by making
+     *  it available for future allocations. */
+    function void deAlloc(Array o) {
+        var Array segment;
+        var int length;
+
+        let segment = o - 2;
+        let segment[0] = segment[1] - (segment + 2);
+        return;
+    }    
+}
