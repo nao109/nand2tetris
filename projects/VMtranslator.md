@@ -6,7 +6,7 @@ classDiagram
     VMtranslator o-- Parser
     VMtranslator o-- CodeWriter
     class VMtranslator{
-        string inputFile
+        inputFile
         VMtranslator(inputFile)
         translate()
         translateFile(codewriter, inputFile)
@@ -25,9 +25,9 @@ classDiagram
         label
         functionName
         CodeWriter(file)
-        setFileName(string fileName)
-        close()
+        setFileName(fileName)
         writeCode(e)
+        close()
         writeArithmetic(arg1)
         writePushPop(command, arg1, arg2)
         writeLabel(label)
@@ -36,5 +36,6 @@ classDiagram
         writeCall(functionName, numArgs)
         writeReturn()
         writeFunction(functionName, numLocals)
+        writeComments(comments)
         newLabel()
     }
