@@ -93,24 +93,24 @@ classDiagram
 
         SymbolTable()
         startSubroutine()
-        define()
-        varCount()
-        kindOf()
-        typeOf()
-        indexOf()
+        define(name, type, kind)
+        varCount(kind)
+        kindOf(name)
+        typeOf(name)
+        indexOf(name)
     }
     class VMWriter {
         ofs
 
-        VMWriter()
-        writePush()
-        writePop()
-        writeArithmetic()
-        writeLabel()
-        writeGoto()
-        writeIf()
-        writeCall()
-        writeFunction()
+        VMWriter(inputFile)
+        writePush(segment, index)
+        writePop(segment, index)
+        writeArithmetic(command)
+        writeLabel(label)
+        writeGoto(label)
+        writeIf(label)
+        writeCall(name, nArgs)
+        writeFunction(name, nLocals)
         writeReturn()
         close()
     }
