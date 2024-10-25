@@ -1,0 +1,403 @@
+<class>
+<keyword> class </keyword>
+<identifier>
+<value> Random <value>
+<category> class <category>
+</identifier>
+<symbol> { </symbol>
+<classVarDec>
+<keyword> static </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> xs <value>
+<category> static </category>
+<defined> defined <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> ; </symbol>
+</classVarDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> void </keyword>
+<identifier>
+<value> srand <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> x0 <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> x0 <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<returnStatement>
+<keyword> return </keyword>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> rand <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<statements>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Random <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> xor <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> * </symbol>
+<term>
+<integerConstant> 128 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Random <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> xor <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> / </symbol>
+<term>
+<integerConstant> 512 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<letStatement>
+<keyword> let </keyword>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+<symbol> = </symbol>
+<expression>
+<term>
+<identifier>
+<value> Random <value>
+<category> class <category>
+</identifier>
+<symbol> . </symbol>
+<identifier>
+<value> xor <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<expressionList>
+<expression>
+<term>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> , </symbol>
+<expression>
+<term>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> * </symbol>
+<term>
+<integerConstant> 256 </integerConstant>
+</term>
+</expression>
+</expressionList>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</letStatement>
+<returnStatement>
+<keyword> return </keyword>
+<expression>
+<term>
+<identifier>
+<value> xs <value>
+<category> static <category>
+<defined> used <defined>
+<kind> static </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<subroutineDec>
+<keyword> function </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> xor <value>
+<category> subroutine <category>
+</identifier>
+<symbol> ( </symbol>
+<parameterList>
+<keyword> int </keyword>
+<identifier>
+<value> a <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+<symbol> , </symbol>
+<keyword> int </keyword>
+<identifier>
+<value> b <value>
+<category> argument </category>
+<defined> defined <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+</parameterList>
+<symbol> ) </symbol>
+<subroutineBody>
+<symbol> { </symbol>
+<varDec>
+<keyword> var </keyword>
+<keyword> int </keyword>
+<identifier>
+<value> ret <value>
+<category> var </category>
+<defined> defined <defined>
+<kind> var </kind>
+<index> 0 </index>
+</identifier>
+<symbol> ; </symbol>
+</varDec>
+<statements>
+<returnStatement>
+<keyword> return </keyword>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<identifier>
+<value> a <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+<symbol> &amp; </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ~ </symbol>
+<term>
+<identifier>
+<value> b <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> | </symbol>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ( </symbol>
+<expression>
+<term>
+<symbol> ~ </symbol>
+<term>
+<identifier>
+<value> a <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 0 </index>
+</identifier>
+</term>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+<symbol> &amp; </symbol>
+<term>
+<identifier>
+<value> b <value>
+<category> argument <category>
+<defined> used <defined>
+<kind> argument </kind>
+<index> 1 </index>
+</identifier>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ) </symbol>
+</term>
+</expression>
+<symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
+</subroutineBody>
+</subroutineDec>
+<symbol> } </symbol>
+</class>
