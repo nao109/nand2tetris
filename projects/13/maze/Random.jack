@@ -1,0 +1,21 @@
+// Xorshift による実装
+class Random {
+    static int xs;
+
+    function void srand(int x0) {
+        let xs = x0;
+        return;
+    }
+
+    function int rand() {
+        let xs = Random.xor(xs, xs * 128); // xs ^= xs << 7;
+        let xs = Random.xor(xs, xs / 512); // xs ^= xs >> 9;
+        let xs = Random.xor(xs, xs * 256); // xs ^= xs << 8;
+        return xs;
+    }
+
+    function int xor(int a, int b) {
+        var int ret;
+        return ((a & (~b)) | ((~a) & b)); // a ^ b = (a & !b) | (!a & b)
+    }
+}

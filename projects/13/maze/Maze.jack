@@ -1,0 +1,258 @@
+// 迷路
+// 壁: 35
+// 道: 32
+// スタート: 83
+// ゴール: 71
+// 現在地: 0
+
+class Maze {
+    static int WALL, ROAD, START, GOAL, ROUTE;
+
+    field int ylen, xlen;
+    field int size;
+    field Array maze;
+    field int sy, sx, gy, gx;
+
+    function void init() {
+        let WALL = 35;
+        let ROAD = 32;
+        let START = 83;
+        let GOAL = 71;
+        let ROUTE = 0;
+        return;
+    }
+
+    // 迷路オブジェクトの生成
+    constructor Maze new(int y, int x) {
+        var int i, j;
+
+        // y * x の2次元配列の生成
+        // 縦の長さ
+        let ylen = y;
+        // 横の長さ
+        let xlen = x;
+        // 要素数
+        let size = ylen * xlen;
+        // 盤面の配列
+        let maze = Array.new(size);
+
+        // 四隅をすべて壁にする
+        let i = 0;
+        while (i < ylen) {
+            let maze[convert(i, 0)] = WALL;
+            let maze[convert(i, xlen - 1)] = WALL;
+            let i = i + 1;
+        }
+        let j = 0;
+        while (j < xlen) {
+            let maze[convert(0, j)] = WALL;
+            let maze[convert(ylen - 1, j)] = WALL;
+            let j = j + 1;
+        }
+
+        return this;
+    }
+
+    // 盤面の初期化
+    method void initMaze() {
+        var int i, j;
+
+        // 四隅以外のマスをすべて道にする
+        let i = 1;
+        while (i < (ylen - 1)) {
+            let j = 1;
+            while (j < (xlen - 1)) {
+                let maze[convert(i, j)] = ROAD;
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }
+
+        // スタート(左上) & ゴール(右下)の設定
+        let sy = 1;
+        let sx = 1;
+        let gy = ylen - 2;
+        let gx = xlen - 2;
+        let maze[convert(sy, sx)] = START;
+        let maze[convert(gy, gx)] = GOAL;
+
+        return;
+    }
+
+    // 盤面の生成(棒倒し法)
+    method void create() {
+        var int i, j;
+
+        // 初期化
+        do initMaze();
+
+        let i = 2;
+        while (i < (ylen - 2)) {
+            let j = 2;
+            while (j < (xlen - 2)) {
+                // たてよこ・偶数番目に棒を立てる
+                let maze[convert(i, j)] = WALL;
+
+                // 倒せるまで繰り返す
+                while (~makeWall(i, j)) {}
+
+                let j = j + 2;
+            }
+            let i = i + 2;
+        }
+
+        return;
+    }
+
+    method boolean makeWall(int y, int x) {
+        var int direction, wallX, wallY;
+
+        // 1行目のみ上に倒せる
+        let direction = Random.rand();
+        if (y = 2) {
+            let direction = direction - (direction / 4 * 4);
+            if (direction < 0) { let direction = direction + 4; }
+        }
+        else {
+            let direction = direction - (direction / 3 * 3);
+            if (direction < 0) { let direction = direction + 3; }
+        }
+
+        // 棒を倒す方向を決める
+        let wallX = x;
+        let wallY = y;
+        if (direction = 0) {
+            // 右
+            let wallX = wallX + 1;
+        }
+        if (direction = 1) {
+            // 下
+            let wallY = wallY + 1;
+        }
+        if (direction = 2) {
+            // 左
+            let wallX = wallX - 1;
+        }
+        if (direction = 3) {
+            // 上
+            let wallY = wallY - 1;
+        }
+        // 壁じゃない場合のみ倒して終了
+        if (~(maze[convert(wallX, wallY)] = WALL)) {
+            let maze[convert(wallX, wallY)] = WALL;
+            return true;
+        }
+        return false;
+    }
+
+    // 盤面の描画
+    method void draw() {
+        var int i, j;
+
+        let i = 0;
+        while (i < ylen) {
+            let j = 0;
+            while (j < xlen) {
+                do Output.printChar(maze[convert(i, j)]);
+                let j = j + 1;
+            }
+            do Output.println();
+            let i = i + 1;
+        }
+
+        return;
+    }
+
+    // 遊ぶ
+    method void play() {
+        var int nowy, nowx;
+        var int prevy, prevx;
+        var char key;
+
+        do Output.printString("Let's solve Maze!");
+        do Output.println();
+
+        // 初期位置はスタート
+        let nowy = sy;
+        let nowx = sx;
+        let maze[convert(sy, sx)] = ROUTE;
+        do Output.moveCursor(nowy, nowx);
+        do Output.printChar(ROUTE);
+
+        while (~((nowy = gy) & (nowx = gx))) {
+            do Output.moveCursor(ylen, 18);
+            let key = Keyboard.readChar();
+
+            // 変更前のnowy, nowx
+            let prevy = nowy;
+            let prevx = nowx;
+
+            // Move left
+            if (key = 130) { let nowx = Math.max(0, nowx - 1); }
+            // Move up
+            if (key = 131) { let nowy = Math.max(0, nowy - 1); }
+            // Move right
+            if (key = 132) { let nowx = Math.min(xlen - 1, nowx + 1); }
+            // Move down
+            if (key = 133) { let nowy = Math.min(ylen - 1, nowy + 1); }
+
+            // 壁なら動かない(変更前に戻す)
+            if (maze[convert(nowy, nowx)] = WALL) {
+                let nowy = prevy;
+                let nowx = prevx;
+            }
+
+            // debug
+            do Output.moveCursor(ylen + 2, 0);
+            do Output.printString("prevy, prevx: ");
+            do Output.printInt(prevy);
+            do Output.printChar(32);
+            do Output.printInt(prevx);
+            do Output.println();
+            do Output.printString("nowy, nowx: ");
+            do Output.printInt(nowy);
+            do Output.printChar(32);
+            do Output.printInt(nowx);
+            do Output.println();
+
+            if (~((prevy = nowy) & (prevx = nowx))) {
+                // debug
+                do Output.printInt(maze[convert(prevy, prevx)]);
+                do Output.println();
+                do Output.printInt(maze[convert(nowy, nowx)]);
+                do Output.println();
+
+                if ((maze[convert(nowy, nowx)] = ROAD) | (maze[convert(nowy, nowx)] = GOAL)) {
+                    do Output.moveCursor(nowy, nowx);
+                    do Output.printChar(ROUTE);
+                    let maze[convert(nowy, nowx)] = ROUTE;
+                }
+                else {
+                    if (maze[convert(nowy, nowx)] = ROUTE) {
+                        do Output.moveCursor(prevy, prevx);
+                        do Output.printChar(ROAD);
+                        let maze[convert(prevy, prevx)] = ROAD;
+                    }
+                }
+            }
+        }
+
+        do Output.moveCursor(ylen, 0);
+        do Output.printString("You cleared this maze!");
+        do Output.println();
+        return;
+    }
+
+    // 描画削除
+    function void clean() {
+        do Sys.wait(3000);
+        do Screen.clearScreen();
+        do Output.moveCursor(0, 0);
+        return;
+    }
+
+    // 2次元座標から1次元座標への変換
+    method int convert(int y, int x) {
+        return y * xlen + x;
+    }
+}

@@ -1,0 +1,34 @@
+class Main {
+    function void main() {
+        var int seed;
+        var Maze maze;
+        var String s;
+        var int count;
+
+        while (true) {
+            // シード値の選択
+            let seed = Keyboard.readInt("What is your favorite integer from -32768 to 32767? ");
+            do Screen.clearScreen();
+            do Output.moveCursor(0, 0);
+
+            // 初期化
+            do Random.srand(seed);
+            do Maze.init();
+
+            // 新規盤面の生成
+            let maze = Maze.new(17, 17);
+
+            // 迷路の生成 & 探索
+            let count = 0;
+            while (count < 2) {
+                do maze.create();
+                do maze.draw();
+                do maze.play();
+                do Maze.clean();
+                let count = count + 1;
+            }
+        }
+
+        return;
+    }
+}
